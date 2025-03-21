@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Link List</title>
+    <link rel="stylesheet" href="circularlinklist.css">
+</head>
+<body><!--body start-->
+    <div class="main2">
+        <a href="doublylinklist.html"><button id="previous">Previous</button></a>
+        <a href="stack.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">circular Linked List </h1><br><br>
+            <p>A circular linked list is a variation of a linked list in which the last element is linked to the first element. This forms a circular loop.</p><br>
+            <div class="img">
+                <img src="images/link list/circular-linked-list-1.webp" >
+                <div class="text">Circular Linked List</div>
+            </div><br><br>
+            <div>
+           <p>A circular linked list can be either singly linked or doubly linked.</p><br><br>
+           <ul>
+            <li>for singly linked list, next pointer of last item points to the first item</li><br>
+            <li>In the doubly linked list, prev pointer of the first item points to the last item as well.</li>
+           </ul><br>
+            </div>
+            <div>
+                <p>A three-member circular singly linked list can be created as:</p><br>
+                <div id="box" style="background-color: #2d2d2d;">
+                    <pre>
+        
+                    <span class="string">/* Initialize nodes */</span>    
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*head;</span>
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*one = NULL;</span>  
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*two = NULL;</span>
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*three = NULL;</span> 
+        
+                    <span class="string">/* Allocate memory */
+                    </span> 
+                    <span class="string">one = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+                    <span class="string">two = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+                    <span class="string">three = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+                    </span>
+                    <span class="string">/* Assign data values */</span>
+
+                    <span>one->data = 1;</span>
+                    <span>two->data = 2;</span>
+                    <span>three->data = 3;</span>
+        
+                    <span class="string">/* Connect nodes */</span>
+
+                    <span>one->next = two;</span>
+                    <span>two->next = three;</span>
+                    <span>three->next = one;</span>
+        
+                    <span class="comment">/* Save address of first node in head */</span>
+                    <span>head = one;
+                    </span>
+                    </pre>
+                </div><br><br><hr><br><br>
+
+        <!-- circular link list visualizer -->
+        <div class="container">
+            <div>
+                <h1>Circular Linked List Visualization</h1>
+                <div class="controls">
+                  <div class="row">
+                    <input type="number" id="valueInput" placeholder="Enter value" />
+                  </div>
+                  <div class="row">
+                    <button onclick="insertAtBeginning()">Insert Beginning</button>
+                    <button onclick="insertAtEnd()">Insert End</button>
+                  </div>
+                  <div class="row">
+                    <input type="number" id="positionInput" placeholder="Position" />
+                  </div>
+                  <div class="row">
+                    <button onclick="insertAtPosition()">Insert At Position</button>
+                    <button onclick="deleteFromPosition()">Delete At Position</button>
+                  </div>
+                  <div class="row">
+                    <button onclick="deleteFromBeginning()">Delete Beginning</button>
+                    <button onclick="deleteFromEnd()">Delete End</button>
+                  </div>
+                </div>
+                <div id="linkedListContainer" class="linked-list-container"></div>
+              </div>
+              
+    </div>
+    <div class="main2">
+        <a href="doublylinklist.html"><button id="previous">Previous</button></a>
+        <a href="stack.html"><button id="next">Next</button></a>
+    </div>
+    <script src="circularlinklist.js"></script>
+</body>
+</html>

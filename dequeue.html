@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dequeue visualizer</title>
+    <link rel="stylesheet" href="dequeue.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="queue.html"><button id="previous">Previous</button></a>
+        <a href="circularqueue.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline;">Dequeue Data Structure</h1><br><br>
+            <ul>
+                <li>Deque or Double Ended Queue is a type of queue in which insertion and removal of elements can either be performed from the front or the rear. Thus, it does not follow FIFO rule (First In First Out).</li><br>
+
+                <div class="img">
+                    <img src="dequeue_images/deque-1.webp" >
+                    <div class="text">Representation of Deque</div>
+                </div><br><hr><br>
+                <h2>Types Of Deque</h2><br>
+                <li><b>Input Restricted Deque</b></li><br>
+                <p>In this deque, input is restricted at a single end but allows deletion at both the ends.</p><br>
+                <li><b>Output Restricted Deque</b></li><br>
+                <p>In this deque, output is restricted at a single end but allows insertion at both the ends.</p>
+                <br>
+            </ul>
+            <br>
+            <hr><br><br><br>
+
+            <h2> Operations On Dequeue</h2><br>
+                <p>Below is the circular array implementation of deque. In a circular array, if the array is full, we start from the beginning.</p><br>
+                <p>But in a linear array implementation, if the array is full, no more elements can be inserted. In each of the operations below, if the array is full, "overflow message" is thrown.</p><br>
+                <p>Before performing the following operations, these steps are followed.</p><br>
+
+
+                <ol>
+                    <li>Take an array (deque) of size "n".</li><br>
+                    <li>Set two pointers " front = -1" and "rear = 0."</li>
+                </ol><br><br>
+                <div class="img">
+                    <img src="dequeue_images/deque-2.webp" >
+                    <div class="text">Initialize an array and pointers for deque</div>
+                </div><br>
+                <ol>
+                    <h2><b><li>Insert at the Front</li></b></h2><br>
+                    <p>This operation adds an element at the front.</p><br>
+                    <ol>
+                        <li>Check if the deque is full.</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-3.webp" >
+                            <div class="text">Check the position of front</div>
+                        </div><br>
+                        <li>If the deque is full (i.e. (front == 0 && rear == n - 1) || (front == rear + 1)), insertion operation cannot be performed ( <b>overflow condition</b> ).</li><br>
+                        <li>If the deque is empty, reinitialize " front = 0 ". And, add the new key into " array[front] ".</li><br>
+                        <li>If " front = 0 ", reinitialize " front = n-1 " (last index).</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-4.webp" >
+                            <div class="text">Shift front to the end</div>
+                        </div><br>
+                        <li>Else, decrease " front " by 1.</li><br>
+                        <li>Add the new key 5 into " array[front] "</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-5.webp" >
+                            <div class="text">Insert the element at Front</div>
+                        </div><br>
+                    </ol>
+
+                    <h2><b><li>Insert at the Rear</li></b></h2><br>
+                    <p>This operation adds an element to the rear.</p><br>
+                    <ol>
+                        <li>Check if the deque is full.</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-6.webp" >
+                            <div class="text">Check if deque is full</div>
+                        </div><br>
+                        <li>If the deque is full, insertion operation cannot be performed (<b>overflow condition</b>).</li><br>
+                        <li>If the deque is empty, reinitialize " rear = 0 ". And, add the new key into " array[rear]. "</li><br>
+                        <li>If " rear = n - 1 ", reinitialize " real = 0 " (first index).
+                        </li><br>
+                        <li>Else, increase " rear " by 1.</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-7.webp" >
+                            <div class="text">Increase the rear</div>
+                        </div><br>
+                        <li>Add the new key 5 into " array[rear] ".</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-8.webp" >
+                            <div class="text">Insert the element at rear</div>
+                        </div><br>
+                    </ol>
+
+                    <h2><b><li> Delete from the Front</li></b></h2><br>
+                    <p>The operation deletes an element from the " front " .</p><br>
+                    <ol>
+                        <li>Check if the deque is empty.</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-9.webp" >
+                            <div class="text">Check if deque is empty</div>
+                        </div><br>
+                        <li>If the deque is empty (i.e. front = -1), deletion cannot be performed ( <b>underflow condition</b> ).</li><br>
+                        <li>If the deque has only one element (i.e. front = rear), set " front = -1 " and " rear = -1 ".</li><br>
+                        <li>Else if " front " is at the last index (i.e. front = n - 1), set " front = 0 ".</li><br>
+                        <li>Else, " front = front + 1 ".</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-10.webp" >
+                            <div class="text">Increase the front</div>
+                        </div><br>
+                    </ol>
+                    <h2><b><li> Delete from the Rear</li></b></h2><br>
+                    <ol>
+                        <p>This operation deletes an element from the " rear ".</p><br>
+                        <li>Check if the deque is empty.</li>
+                        <div class="img">
+                            <img src="dequeue_images/deque-11.webp" >
+                            <div class="text">Check if deque is empty</div>
+                        </div><br>
+                        <li>If the deque is empty (i.e. front = -1), deletion cannot be performed ( <b>underflow condition</b> ).</li><br>
+                        <li>If the deque has only one element (i.e. front = rear), set " front = -1 " and " rear = -1 ", else follow the steps below.</li><br>
+                        <li>If " rear " is at the first index (i.e. rear = 0), reinitialize " rear = n - 1 ".</li><br>
+                        <li>Else, " rear = rear - 1 "</li><br>
+                    </ol>
+
+                    <h2><b><li> Check Empty</li></b></h2><br>
+                    <p>This operation checks if the deque is empty. If " front = -1 ", the deque is empty.</p><br>
+                    
+                    <h2><b><li> Check Full</li></b></h2><br>
+                    <p>This operation checks if the deque is full. If " front = 0 " and " rear = n - 1 " OR " front = rear + 1 ", the deque is full.</p><br>
+                    
+                </ol><br><br>
+                <hr>
+        </div>
+        
+            <h1>Dequeue Implementations in Python, Java and C/C++</h1>
+            <!-- test -->
+<br>
+<div class="navbar">
+    <button class="tab active" onclick="showCode('python')">Python</button>
+    <button class="tab" onclick="showCode('java')">Java</button>
+    <button class="tab" onclick="showCode('c')">C</button>
+    <button class="tab" onclick="showCode('cpp')">C++</button>
+</div>
+
+<div class="code-container">
+    <pre id="python" class="code-block active">
+        <span class="comment"># Dequeue implementation in Python</span>
+        
+        <span class="keyword">class</span> Deque:
+            <span class="keyword">def</span> __init__(self):
+                self.items = []
+                
+            <span class="keyword">def</span> addFront(self, item):
+                self.items.insert(0, item)
+                
+            <span class="keyword">def</span> addRear(self, item):
+                self.items.append(item)
+                
+            <span class="keyword">def</span> removeFront(self):
+                <span class="keyword">if</span> len(self.items) > 0:
+                    <span class="keyword">return</span> self.items.pop(0)
+                <span class="keyword">else</span>:
+                    <span class="keyword">return</span> None
+                
+            <span class="keyword">def</span> removeRear(self):
+                <span class="keyword">if</span> len(self.items) > 0:
+                    <span class="keyword">return</span> self.items.pop()
+                <span class="keyword">else</span>:
+                    <span class="keyword">return</span> None
+                
+            <span class="keyword">def</span> size(self):
+                <span class="keyword">return</span> len(self.items)
+                
+            <span class="keyword">def</span> isEmpty(self):
+                <span class="keyword">return</span> len(self.items) == 0
+                
+            <span class="keyword">def</span> peekFront(self):
+                <span class="keyword">if</span> len(self.items) > 0:
+                    <span class="keyword">return</span> self.items[0]
+                <span class="keyword">else</span>:
+                    <span class="keyword">return</span> None
+                
+            <span class="keyword">def</span> peekRear(self):
+                <span class="keyword">if</span> len(self.items) > 0:
+                    <span class="keyword">return</span> self.items[-1]
+                <span class="keyword">else</span>:
+                    <span class="keyword">return</span> None
+                
+        deque = Deque()
+        deque.addFront(1)
+        deque.addRear(2)
+        print(deque.removeFront())  # Output: 1
+        print(deque.removeRear())   # Output: 2
+    </pre>
+    
+    <pre id="java" class="code-block">
+        <span class="comment">// Dequeue implementation in Java</span>
+        <span class="keyword">import</span> <span class="string">"java.util.LinkedList"</span>;
+        <span class="keyword">public class</span> Deque {
+            <span class="keyword">private</span> LinkedList&lt;Integer&gt; items;
+
+            <span class="keyword">public</span> Deque() {
+                items = <span class="keyword">new</span> LinkedList&lt;&gt;();
+            }
+
+            <span class="keyword">public void</span> addFront(int item) {
+                items.addFirst(item);
+            }
+
+            <span class="keyword">public void</span> addRear(int item) {
+                items.addLast(item);
+            }
+
+            <span class="keyword">public int</span> removeFront() {
+                <span class="keyword">if</span> (!items.isEmpty()) {
+                    <span class="keyword">return</span> items.removeFirst();
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Error code</span>
+            }
+
+            <span class="keyword">public int</span> removeRear() {
+                <span class="keyword">if</span> (!items.isEmpty()) {
+                    <span class="keyword">return</span> items.removeLast();
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Error code</span>
+            }
+
+            <span class="keyword">public int</span> size() {
+                <span class="keyword">return</span> items.size();
+            }
+
+            <span class="keyword">public boolean</span> isEmpty() {
+                <span class="keyword">return</span> items.isEmpty();
+            }
+
+            <span class="keyword">public int</span> peekFront() {
+                <span class="keyword">if</span> (!items.isEmpty()) {
+                    <span class="keyword">return</span> items.getFirst();
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Error code</span>
+            }
+
+            <span class="keyword">public int</span> peekRear() {
+                <span class="keyword">if</span> (!items.isEmpty()) {
+                    <span class="keyword">return</span> items.getLast();
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Error code</span>
+            }
+        }
+        
+        <span class="comment">// Test the Deque class</span>
+        Deque deque = <span class="keyword">new</span> Deque();
+        deque.addFront(1);
+        deque.addRear(2);
+        <span class="keyword">System.out.println</span>(deque.removeFront());  <span class="comment">// Output: 1</span>
+        <span class="keyword">System.out.println</span>(deque.removeRear());   <span class="comment">// Output: 2</span>
+    </pre>
+    
+    <pre id="c" class="code-block">
+        <span class="comment">// Dequeue implementation in C</span>
+        <span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+        <span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+        
+        <span class="keyword">struct</span> Deque {
+            <span class="keyword">int</span> front, rear, size;
+            <span class="keyword">int</span> *array;
+        };
+        
+        <span class="keyword">struct Deque</span>* createDeque(int size) {
+            <span class="keyword">struct Deque</span>* deque = <span class="keyword">malloc</span>(sizeof(<span class="keyword">struct Deque</span>));
+            deque->size = size;
+            deque->front = -1;
+            deque->rear = -1;
+            deque->array = <span class="keyword">malloc</span>(size * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+            <span class="keyword">return</span> deque;
+        }
+
+        <span class="keyword">int</span> isEmpty(<span class="keyword">struct Deque</span>* deque) {
+            <span class="keyword">return</span> deque->front == -1;
+        }
+
+        <span class="keyword">int</span> isFull(<span class="keyword">struct Deque</span>* deque) {
+            <span class="keyword">return</span> deque->rear == deque->size - 1;
+        }
+
+        <span class="keyword">void</span> addFront(<span class="keyword">struct Deque</span>* deque, <span class="keyword">int</span> item) {
+            <span class="keyword">if</span> (isFull(deque)) {
+                <span class="keyword">printf</span>(<span class="string">"Deque is full"</span>);
+                <span class="keyword">return</span>;
+            }
+            <span class="keyword">if</span> (deque->front == -1) {
+                deque->front = 0;
+                deque->rear = 0;
+            } <span class="keyword">else</span> {
+                deque->front--;
+            }
+            deque->array[deque->front] = item;
+        }
+
+        <span class="keyword">void</span> addRear(<span class="keyword">struct Deque</span>* deque, <span class="keyword">int</span> item) {
+            <span class="keyword">if</span> (isFull(deque)) {
+                <span class="keyword">printf</span>(<span class="string">"Deque is full"</span>);
+                <span class="keyword">return</span>;
+            }
+            <span class="keyword">if</span> (deque->rear == -1) {
+                deque->front = 0;
+                deque->rear = 0;
+            } <span class="keyword">else</span> {
+                deque->rear++;
+            }
+            deque->array[deque->rear] = item;
+        }
+
+        <span class="keyword">int</span> removeFront(<span class="keyword">struct Deque</span>* deque) {
+            <span class="keyword">if</span> (isEmpty(deque)) {
+                <span class="keyword">printf</span>(<span class="string">"Deque is empty"</span>);
+                <span class="keyword">return</span> -1;
+            }
+            <span class="keyword">int</span> item = deque->array[deque->front];
+            if (deque->front == deque->rear) {
+                deque->front = -1;
+                deque->rear = -1;
+            } <span class="keyword">else</span> {
+                deque->front++;
+            }
+            <span class="keyword">return</span> item;
+        }
+
+        <span class="keyword">int</span> removeRear(<span class="keyword">struct Deque</span>* deque) {
+            <span class="keyword">if</span> (isEmpty(deque)) {
+                <span class="keyword">printf</span>(<span class="string">"Deque is empty"</span>);
+                <span class="keyword">return</span> -1;
+            }
+            <span class="keyword">int</span> item = deque->array[deque->rear];
+            if (deque->front == deque->rear) {
+                deque->front = -1;
+                deque->rear = -1;
+            } <span class="keyword">else</span> {
+                deque->rear--;
+            }
+            <span class="keyword">return</span> item;
+        }
+    </pre>
+    
+    <pre id="cpp" class="code-block">
+        <span class="comment">// Dequeue implementation in C++</span>
+        <span class="keyword">#include</span> <span class="string">&lt;iostream&gt;</span>
+        <span class="keyword">#include</span> <span class="string">&lt;deque&gt;</span>
+        
+        <span class="keyword">using namespace</span> <span class="keyword">std</span>;
+        
+        <span class="keyword">class</span> Deque {
+        <span class="keyword">private</span>:
+            deque&lt;int&gt; items;
+        
+        <span class="keyword">public</span>:
+            <span class="keyword">void</span> addFront(int item) {
+                items.push_front(item);
+            }
+
+            <span class="keyword">void</span> addRear(int item) {
+                items.push_back(item);
+            }
+
+            <span class="keyword">int</span> removeFront() {
+                <span class="keyword">if</span> (!items.empty()) {
+                    <span class="keyword">int</span> frontItem = items.front();
+                    items.pop_front();
+                    <span class="keyword">return</span> frontItem;
+                }
+                <span class="keyword">return</span> -1;  <span class="comment">// Error code</span>
+            }
+
+            <span class="keyword">int</span> removeRear() {
+                <span class="keyword">if</span> (!items.empty()) {
+                    <span class="keyword">int</span> rearItem = items.back();
+                    items.pop_back();
+                    <span class="keyword">return</span> rearItem;
+                }
+                <span class="keyword">return</span> -1;  <span class="comment">// Error code</span>
+            }
+
+            <span class="keyword">int</span> size() {
+                <span class="keyword">return</span> items.size();
+            }
+
+            <span class="keyword">bool</span> isEmpty() {
+                <span class="keyword">return</span> items.empty();
+            }
+
+            <span class="keyword">int</span> peekFront() {
+                <span class="keyword">if</span> (!items.empty()) {
+                    <span class="keyword">return</span> items.front();
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Error code</span>
+            }
+
+            <span class="keyword">int</span> peekRear() {
+                <span class="keyword">if</span> (!items.empty()) {
+                    <span class="keyword">return</span> items.back();
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Error code</span>
+            }
+        };
+
+        <span class="keyword">int</span> main() {
+            Deque deque;
+            deque.addFront(1);
+            deque.addRear(2);
+            <span class="keyword">cout</span> << deque.removeFront() << <span class="string">" "</span>;<span class="comment">// Output: 1</span>
+            <span class="keyword">cout</span> << deque.removeRear() << <span class="string">" "</span>;<span class="comment">// Output: 2</span>
+            <span class="keyword">return</span> 0;
+        }
+    </pre>
+</div>
+<br><hr><br><br>
+
+<!-- test end -->
+
+        <h2>Time Complexities</h2><br>
+        <ul>
+            <li>The time complexity of all the above operations is constant i.e. "O(1)".
+            </li><br><br><hr><br>
+        </ul>
+
+        <h2>Applications of Deque Data Structure</h2><br>
+        <ol>
+            <li>In undo operations on software.
+            </li><br>
+            <li>To store history in browsers.</li>
+            <br><br><hr><br>
+        </ol>
+        
+        <!-- Dequeue visualizer -->
+        <div class="container">
+            <h1>Double-Ended Queue Visualizer</h1>
+            <div class="queue-operations">
+                <input type="number" id="inputElement" placeholder="Enter a number" />
+                <button onclick="enqueueFront()">Enqueue Front</button>
+                <button onclick="enqueueRear()">Enqueue Rear</button>
+                <button onclick="dequeueFront()">Dequeue Front</button>
+                <button onclick="dequeueRear()">Dequeue Rear</button>
+                <button onclick="peekFront()">Peek Front</button>
+                <button onclick="peekRear()">Peek Rear</button>
+                <button onclick="isEmpty()">Is Empty?</button>
+            </div>
+    
+            <div class="queue-display">
+                <h2>Deque:</h2>
+                <ul id="queueList"></ul>
+            </div>
+    
+            <div id="statusMessage"></div>
+        </div>
+        <div class="main2">
+            <a href="queue.html"><button id="previous">Previous</button></a>
+        <a href="circularqueue.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="dequeue.js"></script>
+</body>
+</html>

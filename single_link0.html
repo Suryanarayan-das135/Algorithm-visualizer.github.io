@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion sort</title>
+    <link rel="stylesheet" href="single_link_list0.css">
+</head>
+<body><!--body start-->
+    <div class="main2">
+        <a href="singlelinklist.html"><button id="previous">Previous</button></a>
+        <a href="doublylinklist.html"><button id="next">Next</button></a>
+    </div>
+    <div><div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Types of Linked List</h1><br><br>
+            <p>There are three common types of Linked List.</p>
+            <br>
+            
+            <ol>
+                <li>Singly Linked List</li><br>
+                <li>Doubly Linked List</li><br>
+                <li>Circular Linked List</li><br>
+                
+                <br>
+            </ol>
+            <br>
+            <hr>
+        </div>
+        <div>
+
+        </div>
+        <div>
+            <h2>Singly Linked List </h2>
+            <br><br>
+            <p>It is the most common. Each node has data and a pointer to the next node.</p>
+            <br>
+
+        </div>
+        <div class="img">
+            <img src="images/link list/single_link_list/link-list1.webp" >
+            <div class="text">Singly Linked List 
+            </div>
+        </div>
+        <br><br>
+        <div><p>Node is represented as:</p>
+        <br>
+        <div id="box" style="background-color: #2d2d2d;">
+            <pre>    
+            <span class="keyword">struct </span><span class="string">node</span>
+                <span class="string">{</span>
+                    <span class="keyword">int </span><span class="string">data;</span>
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*next;</span>
+                <span class="string">};</span>    
+            </pre>
+        </div><br>
+        
+        <br><p>A three-member singly linked list can be created as:</p><br>
+        <div id="box" style="background-color: #2d2d2d;">
+            <pre>
+
+            <span class="string">/* Initialize nodes */</span>    
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*head;</span>
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*one = NULL;</span>  
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*two = NULL;</span>
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*three = NULL;</span> 
+
+            <span class="string">/* Allocate memory */
+            </span> 
+            <span class="string">one = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+            <span class="string">two = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+            <span class="string">three = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+            </span>
+
+            <span class="string">/* Assign data values */</span>
+            <span>one->data = 1;</span>
+            <span>two->data = 2;</span>
+            <span>three->data = 3;</span>
+
+            <span class="string">/* Connect nodes */</span>
+            <span>one->next = two;</span>
+            <span>two->next = three;</span>
+            <span>three->next = NULL;</span>
+
+            <span class="comment">/* Save address of first node in head */</span>
+            <span>head = one;
+            </span>
+            </pre>
+        </div><br>
+        </div>
+        <!---->
+        
+        
+        
+        <!-- single link list visualizer -->
+
+        <div class="container">
+            <h1>Singly Linked List Visualization</h1>
+        <div class="controls">
+            <div class="row">
+                <input type="number" id="valueInput" placeholder="Enter value">
+            </div>
+            <div class="row">
+                <button onclick="insertAtBeginning()">Insert Beginning</button>
+                <button onclick="insertAtEnd()">Insert End</button>
+            </div>
+            <div class="row">
+                <input type="number" id="positionInput" placeholder="Position">
+            </div>
+            <div class="row">
+                <button onclick="insertAtPosition()">Insert At Position</button>
+                <button onclick="deleteFromPosition()">Delete At Position</button>
+            </div>
+            <div class="row">
+                <button onclick="deleteFromBeginning()">Delete Beginning</button>
+                <button onclick="deleteFromEnd()">Delete End</button>
+            </div>
+            
+        </div>
+            </div>
+            <div id="linkedListContainer" class="linked-list-container"></div>
+        </div>
+        <br> <div class="main2">
+            <a href="singlelinklist.html"><button id="previous">Previous</button></a>
+            <a href="doublylinklist.html"><button id="next">Next</button></a>
+        </div>
+    </div>
+
+    </div>    
+        </div>
+    </div>
+        
+    </div>
+    <script src="single_link_list0.js"></script>
+</body>
+</html>

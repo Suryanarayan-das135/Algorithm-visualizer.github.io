@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort</title>
+    <link rel="stylesheet" href="bubblesort2.css">
+</head>
+<body>
+    <div class="main">
+        <!-- div1 -->
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Bubble Sort</h1><br><br>
+            <ul>
+                <li>Bubble sort is a sorting algorithm that compares two adjacent elements and swaps them until they are in the intended order.</li><br>
+                <li>Just like the movement of air bubbles in the water that rise up to the surface, each element of the array move to the end in each iteration. Therefore, it is called a bubble sort.</li>
+            </ul>
+            <br>
+            <hr>
+            <br>
+        </div>
+        <!-- div2 -->
+         <div class="main2">
+            <h2>Working Of Bubble Sort</h2><br>
+            <p>Suppose we are trying to sort the elements in ascending order.</p><br>
+            <ol>
+                <h3><li>First Iteration (Compare and Swap)</li></h3><br>
+                
+                <ul type="circle" id="textbox1">
+                    <li>Starting from the first index, compare the first and the second elements.</li><br>
+                    <li>If the first element is greater than the second element, they are swapped.</li><br>
+                    <li>Now, compare the second and the third elements. Swap them if they are not in order.</li><br>
+                    <li>The above process goes on until the last element.</li>
+                </ul>
+
+                <div class="img">
+                    <img src="images/bubblesort/Bubble-sort-1.png" >
+                    <div class="text">Compare The Adjacent Element</div>
+                </div>
+                <br>
+                <h3><li>Remaining Iteration</li></h3>
+                <ul id="textbox1"><br><li>The same process goes on for the remaining iterations.</li><br>
+                    <li>After each iteration, the largest element among the unsorted elements is placed at the end.</li>
+                </ul>
+                 
+                <div class="img">
+                    <img src="images/bubblesort/Bubble-sort-2.png" >
+                    <div class="text">Put the largest element at the end</div>
+                </div>
+                <ul id="textbox1"><li>In each iteration, the comparison takes place up to the last unsorted element.</li></ul>
+                <div class="img">
+                    <img src="images/bubblesort/Bubble-sort-3.png">
+                    <div class="text">Compare The Adjacent Elements</div>
+                </div>
+                <ul id="textbox1">
+                    <li>The array is sorted when all the unsorted elements are placed at their correct positions.
+                    </li>
+                </ul>
+                <div class="img">
+                    <img src="images/bubblesort/Bubble-sort-4.png">
+                    <div class="text">The Array Is Sorted If All Element Are In The Right Order</div>
+                </div>
+                <br>
+                <hr>
+            </ol>  
+            <br>
+            <h2>Bubble Sort Algorithm</h2>
+            <br>
+            <div id="box" style="background-color: #2d2d2d;text-wrap: wrap;">
+               <pre >    
+                <span class="keyword">bubbleSort(array)</span><br>
+                    <span class="keyword">for</span> <span class="comment">i <- 1 to sizeOfArray - 1</span><br>
+                        <span class="keyword">for</span> <span class="comment">j <- 1 to sizeOfArray - 1 - i</span><br>
+                            <span class="keyword">if</span> <span class="comment">leftElement > rightElement</span><br>
+                                <span class="keyword">swap</span> <span class="comment">leftElement and rightElement</span><br>
+                        <span class="keyword">end</span> <span class="comment">bubbleSort</span>
+               </pre>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <br>
+          <h2>Bubble Sort Code in Python, Java and C/C++</h2>  
+          <br>
+           <!-- test -->
+            <div class="navbar">
+                <button class="tab active" onclick="showCode('python')">Python</button>
+                <button class="tab" onclick="showCode('java')">Java</button>
+                <button class="tab" onclick="showCode('c')">C</button>
+                <button class="tab" onclick="showCode('cpp')">C++</button>
+            </div>
+    
+            <div class="code-container">
+                <pre id="python" class="code-block active">
+        <span class="comment"># Bubble sort in Python</span>
+    
+            <span class="keyword">def</span> bubbleSort(array):
+            <span class="comment"># loop to access each array element</span>
+            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(array)):
+    
+            <span class="comment"># loop to compare array elements</span>
+            <span class="keyword">for</span> j <span class="keyword">in</span> range(0, len(array) - i - 1):
+    
+                <span class="comment"># compare two adjacent elements</span>
+                <span class="keyword">if</span> array[j] > array[j + 1]:
+                    <span class="comment"># swapping elements</span>
+                    temp = array[j]
+                    array[j] = array[j+1]
+                    array[j+1] = temp
+    
+                data = [-2, 45, 0, 11, -9]
+                bubbleSort(data)
+    
+            <span class="keyword">print</span>(<span class="string">'Sorted Array in Ascending Order:'</span>)
+            <span class="keyword">print</span>(data)
+            </pre>
+    
+            <pre id="java" class="code-block">
+            <span class="comment">// Bubble sort in Java</span>
+    
+            <span class="keyword">class</span> BubbleSort {
+            <span class="keyword">void</span> bubbleSort(<span class="keyword">int</span> arr[]) {
+            <span class="keyword">int</span> n = arr.length;
+            <span class="keyword">for</span> (int i = 0; i < n-1; i++)
+                <span class="keyword">for</span> (int j = 0; j < n-i-1; j++)
+                    <span class="keyword">if</span> (arr[j] > arr[j+1]) {
+                        <span class="comment">// swap arr[j+1] and arr[j]</span>
+                            int temp = arr[j];
+                            arr[j] = arr[j+1];
+                            arr[j+1] = temp;
+                        }
+                    }
+                }
+            </pre>
+    
+            <pre id="c" class="code-block">
+            <span class="comment">// Bubble sort in C</span>
+    
+            <span class="keyword">void</span> bubbleSort(<span class="keyword">int</span> array[], <span class="keyword">int</span> size) {
+                <span class="keyword">for</span> (int step = 0; step < size - 1; step++) {
+                    <span class="keyword">for</span> (int i = 0; i < size - step - 1; i++) {
+                        <span class="comment">// Swap if greater</span>
+                        <span class="keyword">if</span> (array[i] > array[i + 1]) {
+                            int temp = array[i];
+                            array[i] = array[i + 1];
+                            array[i + 1] = temp;
+                        }
+                    }
+                }
+            }
+            </pre>
+    
+            <pre id="cpp" class="code-block">
+        <span class="comment">// Bubble sort in C++</span>
+    
+        <span class="keyword">void</span> bubbleSort(vector<int>& arr) {
+                <span class="keyword">int</span> n = arr.size();
+                    <span class="keyword">for</span> (int i = 0; i < n - 1; i++) {
+                        <span class="keyword">for</span> (int j = 0; j < n - i - 1; j++) {
+                            <span class="keyword">if</span> (arr[j] > arr[j + 1]) {
+                                swap(arr[j], arr[j + 1]);
+                            }
+                        }
+                    }
+                }
+            </pre>
+        </div>
+        <!-- TEST END -->
+        <br>
+        <hr>
+        <br>
+        <h2>Bubble Sort Complexity</h2>
+        <br>
+        <table id="table">
+            <tr>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Best</td>
+                <td id="second">O(n)</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Space Complexity</td>
+                <td id="second">O(1)</td>
+            </tr>
+            <tr>
+                <td>Stability</td>
+                <td id="second">Yes</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <h2>Complexity in Detail</h2>
+        <br>
+        <ul><li>Bubble Sort compares the adjacent elements.</li></ul>
+        <br>
+        <table id="table">
+            <tr>
+                <th style="width: 70%;">Cycle</th>
+                <th>Number of Comparisons</th>
+            </tr>
+            <tr>
+                <td>1st</td>
+                <td id="second">(n-1)</td>
+            </tr>
+            <tr>
+                <td>2nd</td>
+                <td id="second">(n-2)</td>
+            </tr>
+            <tr>
+                <td>3rd</td>
+                <td id="second">(n-3)</td>
+            </tr>
+            <tr>
+                <td>.....</td>
+                <td id="second">.....</td>
+            </tr>
+            <tr>
+                <td>last</td>
+                <td id="second">1</td>
+            </tr>
+        </table>
+        <br>
+        <ul><li>Hence, the number of comparisons is</li></ul>
+        <br>
+        <pre id="box" style="background-color: rgb(75, 66, 66);">
+            
+            (n-1) + (n-2) + (n-3) +.....+ 1 = n(n-1)/2
+        </pre>
+        <br>
+        <div class="container">
+            <h1>Bubble Sort Visualizer</h1>
+            
+            <!-- Box for displaying bars -->
+            <div id="barsBox">
+                <div id="barsContainer"></div>
+            </div>
+    
+            <!-- Buttons and input at the bottom -->
+            <div class="controls">
+                <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+                <button id="createBarsButton">Create Bars</button>
+    
+                <div class="last">
+                    <label for="order">Sort Order: </label>
+                    <select id="order">
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                    </select>
+                    <label for="speed">Speed:</label>
+                    <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+                    <button id="sortButton">Sort</button>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+        </div>
+            <div class="main2"><a href="insertionsort.html" target="_blank"><button id="next">Next</button></a></div>
+<script src="bubblesort2.js"></script>
+<script src="bubblesort.js"></script>
+</body>
+</html>

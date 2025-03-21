@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort</title>
+    <link rel="stylesheet" href="mergesort.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="quicksort.html"><button id="previous">Previous</button></a>
+        <a href="heapsort.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Merge Sort Algorithm</h1><br><br>
+            <p>
+                Merge Sort is one of the most popular sorting algorithms that is based on the principle of Divide and Conquer Algorithm.
+                <br><br>
+
+              Here, a problem is divided into multiple sub-problems. Each sub-problem is solved individually. Finally, sub-problems are combined to form the final solution.
+            </p>
+
+            <br>
+                <div class="img">
+                    <img src="images/merge sort/merge sort 1.png" >
+                    <div class="text">Merge sort sample</div>
+                </div>
+                <hr><br><br>
+                <h1>Divide and Conquer Strategy</h1>
+                Using the <b>Divide and Conquer</b> technique, we divide a problem into subproblems. When the solution to each subproblem is ready, we 'combine' the results from the subproblems 
+                to solve the main problem.<br><br>
+
+                Suppose we had to sort an array A .
+               A subproblem  would  be to sort  a sub-section  of this array  starting  at index p  and ending at index r , denoted as  A[p..r] .
+               <br><br>
+               <p><b>Divide</b></p>
+               If q is the half-way point between p and r, then we  can split  the subarray A[p..r]  into two arrays  A[p..q]  and  A[q+1,r].
+               <br><br>
+               <p><b>Conquer</b></p>
+               In the conquer step, we try to sort both the subarrays  A[p..q]  and  A[q+1, r] . If we haven't yet reached the base case, we again divide both these subarrays and try to sort them.
+               <br><br><br>
+               <p><b>Combine</b></p><p>
+                When the conquer step reaches the base step and we get two sorted subarrays A[p..q]
+                 and A[q+1, r] for array A[p..r],<br> we combine  the  results by creating a sorted array 
+                 A[p..r] from two  sorted  subarrays A[p..q] and  A[q+1, r].
+               </p>
+               <br>
+              <hr><br><br>
+              <br>
+               <h1>MergeSort Algorithm</h1>
+               <p>
+                The MergeSort function repeatedly divides the array into two halves until we reach a stage where we try to perform MergeSort on a subarray of size 1 i.e. p == r.<br>
+
+               After that, the merge function comes into play and combines the sorted  arrays  into larger arrays until the whole array is merged.
+               </p>
+               <div id="box" style="background-color: #2d2d2d;">
+                <pre>
+               
+                    MergeSort(A, p, r):
+                    if p > r 
+                        return
+                    q = (p+r)/2
+                    mergeSort(A, p, q)
+                    mergeSort(A, q+1, r)
+                    merge(A, p, q, r)
+
+                </pre>
+               </div>
+               <br><br>
+               <p>
+                To sort an entire array, we need to call Mergesort(A,0,length(A)-1)<br>
+                As shown in the  image below, the merge sort algorithm recursively divides the array into halves until we reach the 
+                base case of array with 1 element. After that,<br> 
+                the merge function picks up the sorted sub-arrays and merges them to gradually sort the entire array.</p>
+
+            <div class="img">
+                    <img src="images/merge sort/merge sort 2.png" >
+                    <div class="text">Merge sort in action.
+                    </div>
+                </div>
+                <h1>The merge Step of Merge Sort</h1>
+                <p>Every recursive algorithm is dependent on a base case and the ability to combine the results from base cases. Merge sort is no different.
+                     The most important part of the merge sort algorithm is, you guessed it, merge step.<br>
+
+                    The merge step is the solution to the simple problem of merging two sorted lists(arrays) to build one large sorted list(array).<br>
+                    
+                    The algorithm maintains three pointers, one for each of the two arrays and one for maintaining the current index of the final sorted array.
+                </p>
+          <div id="box" style="background-color: #2d2d2d;">
+            <pre>
+
+Have we reached the end of any of the arrays?
+    No:
+        Compare current elements of both arrays 
+        Copy smaller element into sorted array
+        Move pointer of element containing smaller element
+    Yes:
+        Copy all remaining elements of non-empty array
+
+        </pre>
+         </div>
+             <div class="img">
+             <img src="images/merge sort/merge sort 3.png" >
+             <div class="text">Merge Step</div>
+                </div>
+                <h1>Writing the Code for Merge Algorithm</h1>
+                <p>
+                    A noticeable difference between the merging step we described above and the one we use for merge sort is that we only perform the merge function on consecutive sub-arrays.<br><br>
+
+               This is why we only need the array, the first position, the last index of the first subarray(we can calculate the first index of the second subarray) and the last index of the second subarray.<br>
+
+              Our task is to merge two subarrays A[p..q] and A[q+1..r]  to create a sorted array  A[p..r]. So the inputs to the function are A, p, q and r<br><br>
+
+              The merge function works as follows:
+              <ol>
+                <li>Create copies of the subarrays L <- A[p..q] and M <- A[q+1..r].</li><br>
+                <li>Create three pointers i, j and k </li><br>
+              <br>
+                   <ol type="a">
+                       <li>i maintains current index ofL, starting at 1</li><br>
+                       <li>j maintains current index ofM, starting at 1</li><br>
+                       <li>k maintains current index ofA[p..q], starting at p</li><br>
+                    </ol>
+                <li>Until we reach the end of either L or M , pick the larger among the elements from L and M  and place them in the correct position at A[p..q] </li><br>
+                <li>When we run out of elements in either L or M , pick up the remaining elements and put in  A[p..q] </li><br>
+              </ol>
+          </ol><br><br>
+          In code ,this would look like:</p>
+          <div id="box" style="background-color: #2d2d2d;"> 
+            <pre>
+
+                <span class="comment">// Merge two subarrays L and M into arr</span> 
+                <span class="keyword">void </span><span class="string"> merge </span>(<span class="keyword">int </span> <span class="comment"> arr[ ]</span> , <span class="keyword">int </span> <span class="comment"> p</span> , <span class="keyword">int </span><span class="comment"> q</span> ,<span class="keyword">int </span> <span class="comment"> r </span>)  {
+
+               <span class="comment">// Create L ← A[p..q] and M ← A[q+1..r]</span>
+               <span class="keyword">int </span>  n1 = q - p + 1;
+               <span class="keyword">int </span>  n2 = r - q;
+                
+               <span class="keyword">int </span> L[n1], M[n2];
+                
+               <span class="keyword">for </span>  (<span class="keyword">int </span> i = 0; i < n1; i++)
+                        L[i] = arr[p + i];
+               <span class="keyword">for</span>  (<span class="keyword">int </span> j = 0; j < n2; j++)
+                        M[j] = arr[q + 1 + j];
+                
+                    <span class="comment">// Maintain current index of sub-arrays and main array</span>
+                    <span class="keyword">int </span> i, j, k;
+                    i = 0;
+                    j = 0;
+                    k = p;
+                
+                    <span class="comment"> // Until we reach either end of either L or M, pick larger among</span>
+                   <span class="comment" > // elements L and M and place them in the correct position at A[p..r]</span>
+                    <span class="keyword">while </span> (i < n1 && j < n2) {
+                        <span class="keyword">if </span> (L[i] <= M[j]) {
+                            arr[k] = L[i];
+                            i++;
+                        } <span class="keyword">else </span> {
+                            arr[k] = M[j];
+                            j++;
+                        }
+                        k++;
+                    }
+                
+                    <span class="comment">  // When we run out of elements in either L or m, pick larger among </span>
+                    <span  class="comment">  // pick up the remaining elements and put in A[p..r]</span>
+
+                    <span class="keyword">while </span>(i < n1) {
+                        arr[k] = L[i];
+                        i++;
+                        k++;
+                    }
+                    <span class="keyword">while </span>(j < n2) {
+                        arr[k] = M[j];
+                        j++;
+                        k++;
+                    }
+                }
+                
+           </pre>   
+           </div>
+<h1>Merge( ) Function Explained Step-By-Step</h1><br>
+<p>A lot is happening in this function, so let's take an example to see how this would work.<br><br>
+
+    As usual, a picture speaks a thousand words</p>
+             <div class="img">
+                    <img src="images/merge sort/merge sort 4.png" >
+                    <div class="text">Merge two consecutive sub-arrays of array</div>
+                </div><br>
+                <p>The array A[0..5]  contains two sorted subarrays   A[0..3] and  A[4..5] .<br><br> Let us see how the merge function will merge the two arrays.</p>
+                <div id="box" style="background-color: #2d2d2d;">
+                    <pre>
+                        
+                        <span class="keyword">void </span><span class="string">merge </span><span class="comment">( </span><span class="keyword">int </span><span class="comment">arr[], </span><span class="keyword">while </span><span class="keyword">int </span><span class="comment">p </span><span class="keyword">int </span><span class="keyword">q </span><span class="keyword">int </span><span class="comment">r){ </span>
+                              <span>// Here, p = 0, q = 4, r = 6 (size of array) </span>
+
+                        
+
+                    </pre>
+                </div>
+       
+                   
+                    <h2>Step 1: Create duplicate copies of sub-arrays to be sorted</h2>
+                    <div id="box" style="background-color: #2d2d2d;">
+                        <pre>
+
+                          <span class="comment">  // Create L ← A[p..q] and M ← A[q+1..r]
+                            int n1 = q - p + 1 = 3 - 0 + 1 = 4;
+                            int n2 = r - q = 5 - 3 = 2;
+                        
+                            int L[4], M[2];
+                        
+                            for (int i = 0; i < 4; i++)
+                                L[i] = arr[p + i];
+                                // L[0,1,2,3] = A[0,1,2,3] = [1,5,10,12]
+                        
+                            for (int j = 0; j <span 2; j++)
+                                M[j] = arr[q + 1 + j];
+                                // M[0,1] = A[4,5] = [6,9]
+                          </span>
+                         </pre>
+
+                           </div><br>
+                <div class="img">
+                 <img src="images/merge sort/merge sort 5.png" >
+                <div class="text">Create copies of subarray for merging</div>
+                </div>
+                <h2>Step 2: Maintain current index of sub-arrays and main array</h2>
+
+                <div id="box" style="background-color: #2d2d2d;">
+                <pre>
+
+                    <span class="comment">int </span> i, j, k;
+                    <span class="comment">i </span> = <span class="string">0 </span>;
+                    <span class="comment">j </span> = <span class="string">0 </span>;
+                    <span class="comment">k </span> = p;
+                 </pre>
+                </div>
+                    <div class="img">
+                        <img src="images/merge sort/merge sort 6.png" >
+                        <div class="text">Maintain indices of copies of sub array and main array</div>
+                    </div>
+                    <br>
+                    <h2>Step 3: Until we reach the end of either L or M, pick larger among elements L and M and place them in the correct position at A[p..r]</h2>
+                    <div id="box" style="background-color: #2d2d2d;">
+                         <pre>
+                                
+                            <span class="string">while </span> <span class="comment"> (i < n1 && j < n2) { 
+                                if (L[i] <= M[j]) {     </span>
+                                    <span class="keyword">arr[k] </span> <span class="string">= L[i]; i++; 
+                                 } </span> 
+                                    <span class="string">else </span><span class="comment">{ </span>
+                                    <span class="keyword">arr[k] </span><span class="comment">= M[j] ;</span>
+                                    <span class="keyword">j++;
+                                     }
+                                    k++; </span>
+                                    <span class="string">}</span>
+
+                                
+
+                       </pre>
+                   </div>
+
+                    <div class="img">
+                        <img src="images/merge sort/merge sort 7.png" >
+                        <div class="text">comparing individual elements of sorted subarrays untill we reach end of one</div>
+                    </div>
+
+                    <h1>Step 4: When we run out of elements in either L or M, pick up the remaining elements and put in A[p..r]</h1>
+                    <div id="box" style="background-color: #2d2d2d;"> 
+                        <pre>
+
+                            <span class="string">// We exited the earlier loop because j < n2 doesn't hold </span>
+                            <span class="keyword">while</span>(j < n1)
+                            {
+                                arr[k] = L[i];
+                                i++;
+                                k++;
+                            }
+                        
+                         </pre>   
+                    </div>
+                        <div class="img">
+                            <img src="images/merge sort/merge sort 8.png" >
+                            <div class="text">Copy the remaining from the first array to main subarray</div>
+                        </div>    
+                            <br>
+                            <div id="box" style="background-color: #2d2d2d;">
+                                <pre>              
+              <span class="string">// We exited the earlier loop because i < n1 doesn't hold  </span>
+                <span class="keyword">while</span>(j < n2)
+                 {
+                     arr[k] = M[j];
+                     j++;
+                     k++;
+                 }
+             }
+
+            </pre>
+            </div>
+                           <div class="img">
+                            <img src="images/merge sort/merge sort 9.png" >
+                            <div class="text">Copy remaining elements of second array to main subarray</div>
+                        </div><br>
+                        <p>This step would have been needed if the size of M was greater than L.<br><br>
+
+                            At the end of the merge function, the subarray, A[p..r]  is sorted.
+                        </p>
+                        <hr>
+                        <h1>Merge Sort Code in Python, Java, and C/C++</h1>
+<!-- test -->
+<br>
+<div class="navbar">
+    <button class="tab active" onclick="showCode('python')">Python</button>
+    <button class="tab" onclick="showCode('java')">Java</button>
+    <button class="tab" onclick="showCode('c')">C</button>
+    <button class="tab" onclick="showCode('cpp')">C++</button>
+</div>
+
+<div class="code-container">
+    <pre id="python" class="code-block active">
+        <span class="comment"># Merge Sort in Python</span>
+        <span class="keyword">def</span> mergeSort(array):
+            <span class="keyword">if</span> len(array) > 1:
+                mid = len(array) // 2
+                left = array[:mid]
+                right = array[mid:]
+                
+                <span class="keyword">mergeSort</span>(left)
+                <span class="keyword">mergeSort</span>(right)
+                
+                i = j = k = 0
+                
+                <span class="keyword">while</span> i < len(left) <span class="keyword">and</span> j < len(right):
+                    <span class="keyword">if</span> left[i] < right[j]:
+                        array[k] = left[i]
+                        i += 1
+                    <span class="keyword">else</span>:
+                        array[k] = right[j]
+                        j += 1
+                    k += 1
+                
+                <span class="keyword">while</span> i < len(left):
+                    array[k] = left[i]
+                    i += 1
+                    k += 1
+                
+                <span class="keyword">while</span> j < len(right):
+                    array[k] = right[j]
+                    j += 1
+                    k += 1
+
+        data = [12, 11, 13, 5, 6, 7]
+        mergeSort(data)
+        <span class="keyword">print</span>(<span class="string">'Sorted Array in Ascending Order:'</span>)
+        <span class="keyword">print</span>(data)
+    </pre>
+    
+    <pre id="java" class="code-block">
+        <span class="comment">// Merge Sort in Java</span>
+        <span class="keyword">class</span> MergeSort {
+            <span class="keyword">void</span> mergeSort(<span class="keyword">int</span> arr[]) {
+                <span class="keyword">if</span> (arr.length &gt; 1) {
+                    <span class="keyword">int</span> mid = arr.length / 2;
+                    <span class="keyword">int</span>[] left = <span class="keyword">Arrays.copyOfRange</span>(arr, 0, mid);
+                    <span class="keyword">int</span>[] right = <span class="keyword">Arrays.copyOfRange</span>(arr, mid, arr.length);
+                    
+                    <span class="keyword">mergeSort</span>(left);
+                    <span class="keyword">mergeSort</span>(right);
+                    
+                    <span class="keyword">int</span> i = 0, j = 0, k = 0;
+                    
+                    <span class="keyword">while</span> (i &lt; left.length && j &lt; right.length) {
+                        <span class="keyword">if</span> (left[i] &lt; right[j]) {
+                            arr[k] = left[i];
+                            i++;
+                        } <span class="keyword">else</span> {
+                            arr[k] = right[j];
+                            j++;
+                        }
+                        k++;
+                    }
+                    
+                    <span class="keyword">while</span> (i &lt; left.length) {
+                        arr[k] = left[i];
+                        i++;
+                        k++;
+                    }
+                    
+                    <span class="keyword">while</span> (j &lt; right.length) {
+                        arr[k] = right[j];
+                        j++;
+                        k++;
+                    }
+                }
+            }
+        }
+    </pre>
+    
+    <pre id="c" class="code-block">
+        <span class="comment">// Merge Sort in C</span>
+        <span class="keyword">void</span> mergeSort(<span class="keyword">int</span> array[], <span class="keyword">int</span> left, <span class="keyword">int</span> right) {
+            <span class="keyword">if</span> (left &lt; right) {
+                <span class="keyword">int</span> mid = left + (right - left) / 2;
+                
+                <span class="keyword">mergeSort</span>(array, left, mid);
+                <span class="keyword">mergeSort</span>(array, mid + 1, right);
+                
+                <span class="keyword">merge</span>(array, left, mid, right);
+            }
+        }
+        
+        <span class="keyword">void</span> merge(<span class="keyword">int</span> array[], <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right) {
+            <span class="keyword">int</span> n1 = mid - left + 1;
+            <span class="keyword">int</span> n2 = right - mid;
+            <span class="keyword">int</span> leftArray[n1], rightArray[n2];
+            
+            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n1; i++)
+                leftArray[i] = array[left + i];
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j &lt; n2; j++)
+                rightArray[j] = array[mid + 1 + j];
+                
+            <span class="keyword">int</span> i = 0, j = 0, k = left;
+            
+            <span class="keyword">while</span> (i &lt; n1 && j &lt; n2) {
+                <span class="keyword">if</span> (leftArray[i] &lt; rightArray[j]) {
+                    array[k] = leftArray[i];
+                    i++;
+                } <span class="keyword">else</span> {
+                    array[k] = rightArray[j];
+                    j++;
+                }
+                k++;
+            }
+            
+            <span class="keyword">while</span> (i &lt; n1) {
+                array[k] = leftArray[i];
+                i++;
+                k++;
+            }
+            
+            <span class="keyword">while</span> (j &lt; n2) {
+                array[k] = rightArray[j];
+                j++;
+                k++;
+            }
+        }
+    </pre>
+    
+    <pre id="cpp" class="code-block">
+        <span class="comment">// Merge Sort in C++</span>
+        <span class="keyword">void</span> mergeSort(vector&lt;int&gt;&amp; arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right) {
+            <span class="keyword">if</span> (left &lt; right) {
+                <span class="keyword">int</span> mid = left + (right - left) / 2;
+                
+                <span class="keyword">mergeSort</span>(arr, left, mid);
+                <span class="keyword">mergeSort</span>(arr, mid + 1, right);
+                
+                <span class="keyword">merge</span>(arr, left, mid, right);
+            }
+        }
+        
+        <span class="keyword">void</span> merge(vector&lt;int&gt;&amp; arr, <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right) {
+            <span class="keyword">int</span> n1 = mid - left + 1;
+            <span class="keyword">int</span> n2 = right - mid;
+            
+            vector&lt;int&gt; leftArray(n1), rightArray(n2);
+            
+            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n1; i++)
+                leftArray[i] = arr[left + i];
+            <span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j &lt; n2; j++)
+                rightArray[j] = arr[mid + 1 + j];
+            
+            <span class="keyword">int</span> i = 0, j = 0, k = left;
+            
+            <span class="keyword">while</span> (i &lt; n1 && j &lt; n2) {
+                <span class="keyword">if</span> (leftArray[i] &lt; rightArray[j]) {
+                    arr[k] = leftArray[i];
+                    i++;
+                } <span class="keyword">else</span> {
+                    arr[k] = rightArray[j];
+                    j++;
+                }
+                k++;
+            }
+            
+            <span class="keyword">while</span> (i &lt; n1) {
+                arr[k] = leftArray[i];
+                i++;
+                k++;
+            }
+            
+            <span class="keyword">while</span> (j &lt; n2) {
+                arr[k] = rightArray[j];
+                j++;
+                k++;
+            }
+        }
+    </pre>
+</div>
+
+<!-- test end -->
+
+
+         <br>
+         <hr>
+         <br>
+         <h2>Merge Sort Complexity</h2><br>
+         <table id="table">
+            <tr>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Best</td>
+                <td id="second">O(n*log n)</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td id="second">O(n*log n)</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td id="second">O(n*log n)</td>
+            </tr>
+            <tr>
+                <td>Space Complexity</td>
+                <td id="second">O(n)</td>
+            </tr>
+            <tr>
+                <td>Stability</td>
+                <td id="second">Yes</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <h2>Time Complexities</h2><br>
+        <p>Best Case Complexity: O(n*log n)</p><br>
+        <p>Worst Case Complexity: O(n*log n)</p><br>
+        <p>Average Case Complexity: O(n*log n)</p><br>
+    
+        <h2>Space Complexities</h2><br>
+        <p>The space complexity of merge sort is O(n)</p><br>
+        <hr>
+        <br>
+        <h1>Merge Sort Applications</h1>
+        <ul>
+            <li>Inversion count problem</li><br>
+            <li>External sorting</li><br>
+            <li>E-commerce applications</li><br>
+        </ul>
+        <hr>
+        <br>
+    
+        
+        <div class="container">
+            <h1>Merge Sort Visualizer</h1>
+            
+            <!-- Box for displaying bars -->
+            <div id="barsBox">
+                <div id="barsContainer"></div>
+            </div>
+        
+            <!-- Buttons and input at the bottom -->
+            <div class="controls">
+                <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+                <button id="createBarsButton">Create Bars</button>
+        
+                <div class="last">
+                    <label for="order">Sort Order: </label>
+                    <select id="order">
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                    </select>
+                    <label for="speed">Speed:</label>
+                    <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+                    <button id="sortButton">Sort</button>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+        </div>
+                    
+
+        <div class="main2">
+            <a href="quicksort.html"><button id="previous">Previous</button></a>
+        <a href="heapsort.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="mergesort.js"></script>
+</body>
+</html>

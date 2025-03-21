@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick sort</title>
+    <link rel="stylesheet" href="quicksort.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="selectionsort.css"><button id="previous">Previous</button></a>
+        <a href="mergesort.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Quick Sort Algorithm</h1><br>
+            <p>Quicksort is a sorting algorithm based on the<b> divide and conquer approach</b> where </p><br>
+
+            <ol>
+                <li>An array is divided into subarrays by selecting a <b>pivot element</b> (element selected from the array).</li> <br>
+                <p>While dividing the array, the pivot element should be positioned in such a way that elements less than pivot are kept on the left side and elements greater than pivot are on the right side of the pivot.  </p><br>
+                <li>The left and right subarrays are also divided using the same approach. This process continues until each subarray contains a single element.<br>
+                </li><br>
+                <li> At this point, elements are already sorted. Finally, elements are combined to form a sorted array.</li><br>
+                <br>
+
+               <br>
+               <hr>
+             </div>
+             <div class="main2">
+            </ol>
+                <h2>Working of Quick Sort Algorithm</h2><br>
+                <ol type="circle" id="textbox1">
+                    <li>Select the Pivot Element</li>
+
+                  <div class="img">
+                    <img src="quick sort/quick-sort-0.1.png" >
+                    <div class="text">Select a pivot element</div>
+                  </div>
+                
+                    <li>Rearrange the Array</li>
+
+                 <br>
+                 <p>  Now the elements of the array are rearranged so that elements that are smaller than the pivot are put on the left and the elements greater than the pivot are put on the right.</p>
+                 <br>
+                 <div class="img">
+                    <img src="quick sort/quick-sort-0.2.png" >
+                    <div class="text"> 
+                        Put all the smaller elements on the left and greater on the right of pivot element
+
+                    </div>
+                 </div>
+                 <p>Here's how we rearrange the array:                </p><br>
+                 <ol>
+                 <li>A pointer is fixed at the pivot element. The pivot element is compared with the elements beginning from the first index.</li><br>
+
+                 <div class="img">
+                    <img src="quick sort/quick-sort-partition-first-step.png" >
+                    <div class="text">
+                        Comparison of pivot element with element beginning from the first index
+                    </div>
+                  </div>
+                 <li>If the element is greater than the pivot element, a second pointer is set for that element.</li>
+                 <div class="img">
+                    <img src="quick sort/quick-sort-partition-second-step.png" >
+                    <div class="text">
+                        If the element is greater than the pivot element, a second pointer is set for that element.
+                    </div>
+                 </div>
+                 <li>Now, pivot is compared with other elements. If an element smaller than the pivot element is reached, the smaller element is swapped with the greater element found earlier.
+                 </li>
+                 <div class="img">
+                    <img src="quick sort/quick-sort-partition-third-step.png" >
+                    <div class="text">
+                        Pivot is compared with other elements.
+                    </div>
+                 </div>
+                 <li>Again, the process is repeated to set the next greater element as the second pointer. And, swap it with another smaller element.
+                 </li>
+                 <div class="img">
+                    <img src="quick sort/quick-sort-partition-fourth-step.png" >
+                    <div class="text">
+                        The process is repeated to set the next greater element as the second pointer.
+
+                    </div>
+                 </div>
+                 <li>The process goes on until the second last element is reached.
+                 </li>
+                 <div class="img">
+                    <img src="quick sort/quick-sort-partition-fifth-step.png" >
+                    <div class="text">
+                        The process goes on until the second last element is reached
+                    </div>
+                 </div>
+                 <li>Finally, the pivot element is swapped with the second pointer</li>
+                 <div class="img">
+                    <img src="quick sort/quick-sort-partition-sixth-step.png" >
+                    <div class="text">
+                        Finally, the pivot element is swapped with the second pointer
+                    </div>
+                 </div>
+                 </ol>
+                 <li>Divide Subarrays </li>
+                </ol><br> 
+                <p>Pivot elements are again chosen for the left and the right sub-parts separately. And, step 2 is repeated.</p>
+
+                <div class="img">
+                    <img src="quick sort/quick-sort_3.png" >
+                    <div class="text">
+                        Select pivot element of in each half and put at correct place using recursion
+
+                    </div>
+                </div>
+                <p>The subarrays are divided until each subarray is formed of a single element. At this point, the array is already sorted</p><br>
+                <hr>
+             <br>
+            <h2>Quick Sort Algorithm</h2><br>
+            <div id="box" style="background-color: #2d2d2d;">
+                <pre>
+                    
+                <span class="string">quicksort</span><span class="comment">(array, leftmostIndex, rightmostIndex) </span>
+                    <span class="keyword">if</span> <span class="comment">   ( leftmostIndex < rightmostIndex)     </span>
+                    <span class="comment">pivotIndex <-  </span><span class="keyword">(array,leftmostIndex, rightmostIndex)  </span>
+                    <span class="string">quicksort</span><span class="comment">(array, leftmostIndex, rightmostIndex-1) </span>
+                    <span class="string">quicksort</span><span class="comment">(array, PivotIndex, rightmostIndex) </span>
+                    <span class="string">parition</span><span class="comment">(array, leftmostIndex, rightmostIndex) </span>
+                    <span class="keyword">set</span><span class="comment"> rightmostIndex </span><span class="keyword">as</span><span class="comment"> pivotIndex </span>
+                    <span class="comment"> storeIndex <- leftmostIndex - 1</span>
+                    <span class="keyword">for</span><span class="comment">i <- leftmostIndex + 1 to rightmostIndex </span>
+                    <span class="keyword">if</span><span class="comment">element[i] < pivotElement </span>
+                    <span class="string"> swap</span><span class="comment">element[i] and element[storeIndex] </span>
+                    <span class="comment">storeIndex++</span>
+                    <span class="string">  swap</span> <span class="comment">pivotElement and element[storeIndex+1]</span>
+                    <span class="keyword">return</span><span class="comment">storeIndex + 1 </span>
+
+                </pre>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <h2>Visual Illustration of Quicksort Algorithm</h2><br>
+            <p>You can understand the working of quicksort algorithm with the help of the illustrations below.</p>
+            <div class="img">
+                <img src="quick sort/quick-sort-working.png" >
+                <div class="text">
+                    Sorting the elements on the left of pivot using recursion
+
+                </div><br>
+         </div>   
+
+         <div class="img">
+            <img src="quick sort/quick-sort-4.png" >
+            <div class="text">
+                Sorting the elements on the right of pivot using recursion
+
+
+            </div><br>
+         </div> 
+
+            <h2>Quick Sort Code in Python, Java and C/C++</h2>
+            <!-- test -->
+            <br>
+            <div class="navbar">
+                <button class="tab active" onclick="showCode('python')">Python</button>
+                <button class="tab" onclick="showCode('java')">Java</button>
+                <button class="tab" onclick="showCode('c')">C</button>
+                <button class="tab" onclick="showCode('cpp')">C++</button>
+            </div>
+            
+            <div class="code-container">
+                <pre id="python" class="code-block active">
+                    <span class="comment"># Quick Sort in Python</span>
+                    <span class="keyword">def</span> quickSort(arr):
+                        <span class="keyword">if</span> len(arr) <= 1:
+                            <span class="keyword">return</span> arr
+                        pivot = arr[len(arr) // 2]
+                        left = [x < pivot <span class="keyword">for</span> x <span class="keyword">in</span> arr]
+                        middle = [x <span class="keyword">for</span> x <span class="keyword">in</span> arr if x == pivot]
+                        right = [x > pivot <span class="keyword">for</span> x <span class="keyword">in</span> arr]
+                        <span class="keyword">return</span> quickSort(left) + middle + quickSort(right)
+                    
+                    data = [-2, 45, 0, 11, -9]
+                    sorted_data = quickSort(data)
+                    <span class="keyword">print</span>(<span class="string">'Sorted Array in Ascending Order:'</span>)
+                    <span class="keyword">print</span>(sorted_data)
+                </pre>
+                
+                <pre id="java" class="code-block">
+                    <span class="comment">// Quick Sort in Java</span>
+                    <span class="keyword">class</span> QuickSort {
+                        <span class="keyword">void</span> quickSort(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+                            <span class="keyword">if</span> (low < high) {
+                                <span class="keyword">int</span> pi = partition(arr, low, high);
+                                quickSort(arr, low, pi - 1);
+                                quickSort(arr, pi + 1, high);
+                            }
+                        }
+                        
+                        <span class="keyword">int</span> partition(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+                            <span class="keyword">int</span> pivot = arr[high];
+                            <span class="keyword">int</span> i = (low - 1);
+                            <span class="keyword">for</span> (<span class="keyword">int</span> j = low; j < high; j++) {
+                                <span class="keyword">if</span> (arr[j] <= pivot) {
+                                    i++;
+                                    <span class="keyword">int</span> temp = arr[i];
+                                    arr[i] = arr[j];
+                                    arr[j] = temp;
+                                }
+                            }
+                            <span class="keyword">int</span> temp = arr[i + 1];
+                            arr[i + 1] = arr[high];
+                            arr[high] = temp;
+                            <span class="keyword">return</span> (i + 1);
+                        }
+                        
+                        <span class="keyword">public static void</span> main(String[] args) {
+                            <span class="keyword">int</span> data[] = {-2, 45, 0, 11, -9};
+                            QuickSort qs = <span class="keyword">new</span> QuickSort();
+                            qs.quickSort(data, 0, data.length - 1);
+                            <span class="keyword">System.out.println</span>(<span class="string">"Sorted Array in Ascending Order:"</span>);
+                            <span class="keyword">for</span> (<span class="keyword">int</span> i : data) {
+                                <span class="keyword">System.out.print</span>(i + <span class="string">" "</span>);
+                            }
+                        }
+                    }
+                </pre>
+                
+                <pre id="c" class="code-block">
+                    <span class="comment">// Quick Sort in C</span>
+                    <span class="keyword">void</span> quickSort(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+                        <span class="keyword">if</span> (low < high) {
+                            <span class="keyword">int</span> pi = partition(arr, low, high);
+                            quickSort(arr, low, pi - 1);
+                            quickSort(arr, pi + 1, high);
+                        }
+                    }
+                    
+                    <span class="keyword">int</span> partition(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+                        <span class="keyword">int</span> pivot = arr[high];
+                        <span class="keyword">int</span> i = (low - 1);
+                        <span class="keyword">for</span> (<span class="keyword">int</span> j = low; j < high; j++) {
+                            <span class="keyword">if</span> (arr[j] <= pivot) {
+                                i++;
+                                <span class="keyword">int</span> temp = arr[i];
+                                arr[i] = arr[j];
+                                arr[j] = temp;
+                            }
+                        }
+                        <span class="keyword">int</span> temp = arr[i + 1];
+                        arr[i + 1] = arr[high];
+                        arr[high] = temp;
+                        <span class="keyword">return</span> (i + 1);
+                    }
+                    
+                    <span class="keyword">int</span> main() {
+                        <span class="keyword">int</span> data[] = {-2, 45, 0, 11, -9};
+                        <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(data) / <span class="keyword">sizeof</span>(data[0]);
+                        quickSort(data, 0, n - 1);
+                        <span class="keyword">printf</span>(<span class="string">"Sorted Array in Ascending Order:"</span>);
+                        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < n; i++) {
+                            <span class="keyword">printf</span>(<span class="string">"%d "</span>, data[i]);
+                        }
+                        <span class="keyword">return</span> 0;
+                    }
+                </pre>
+                
+                <pre id="cpp" class="code-block">
+                    <span class="comment">// Quick Sort in C++</span>
+                    <span class="keyword">void</span> quickSort(vector&lt;int&gt;& arr, <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+                        <span class="keyword">if</span> (low < high) {
+                            <span class="keyword">int</span> pi = partition(arr, low, high);
+                            quickSort(arr, low, pi - 1);
+                            quickSort(arr, pi + 1, high);
+                        }
+                    }
+                    
+                    <span class="keyword">int</span> partition(vector&lt;int&gt;& arr, <span class="keyword">int</span> low, <span class="keyword">int</span> high) {
+                        <span class="keyword">int</span> pivot = arr[high];
+                        <span class="keyword">int</span> i = (low - 1);
+                        <span class="keyword">for</span> (<span class="keyword">int</span> j = low; j < high; j++) {
+                            <span class="keyword">if</span> (arr[j] <= pivot) {
+                                i++;
+                                <span class="keyword">swap</span>(arr[i], arr[j]);
+                            }
+                        }
+                        <span class="keyword">swap</span>(arr[i + 1], arr[high]);
+                        <span class="keyword">return</span> (i + 1);
+                    }
+                    
+                    <span class="keyword">int</span> main() {
+                        vector&lt;int&gt; data = {-2, 45, 0, 11, -9};
+                        <span class="keyword">int</span> n = data.size();
+                        quickSort(data, 0, n - 1);
+                        <span class="keyword">cout</span> &lt;&lt; <span class="string">"Sorted Array in Ascending Order:"</span> &lt;&lt; endl;
+                        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < n; i++) {
+                            <span class="keyword">cout</span> &lt;&lt; data[i] &lt;&lt; <span class="string">" "</span>;
+                        }
+                        <span class="keyword">return</span> 0;
+                    }
+                </pre>
+            </div>
+            
+            
+         <!-- test end -->
+         <br>
+         <hr>
+         <br>
+         <h2>Quicksort Complexity  </h2><br>
+         <table id="table">
+            <tr>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Best</td>
+                <td id="second">O(n*log n)</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td id="second">O(n*log n)</td>
+            </tr>
+            <tr>
+                <td>Space Complexity</td>
+                <td id="second">O(log n)</td>
+            </tr>
+            <tr>
+                <td>Stability</td>
+                <td id="second">No</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <ol>
+            <h2><li>Time Complexities</li></h2><br>
+            <ul>
+                <li><h4>Worst Case Complexity [Big-O]: O(n2)</h4><b></b><br></li>
+                <p>It occurs when the pivot element picked is either the greatest or the smallest element.</p><br>
+                <p>This condition leads to the case in which the pivot element lies in an extreme end of the sorted array.
+                     One sub-array is always empty and another sub-array contains (n-1) elements. 
+                     Thus, quicksort is called only on this sub-array.</p><br>
+                <p>However, the quicksort algorithm has better performance for scattered pivots.</p>
+                <p></p><br>
+
+            </ul>
+            <ul>
+                <li><h4>Best Case Complexity [Big-omega]:</h4> O(n*log n)</li><br>
+                <p> It occurs when the pivot element is always the middle element or near to the middle element.</p><br>
+            </ul>
+            <ul>
+                <li><h4>Average Case Complexity [Big-theta]: 
+                </h4>O(n*log n)</li><br>
+            
+                <p>It occurs when the above conditions do not occur.</p><br>
+            </ul>
+            <h2><li>Space Complexities</li></h2><br>
+            <p>The space complexity for quicksort is O(log n). </p><br>
+        </ol>
+
+        <!-- Quick Sort Visualizer -->
+<div class="container">
+    <h1>Quick Sort Visualizer</h1>
+
+    <!-- Box for displaying bars -->
+    <div id="barsBox">
+        <div id="barsContainer"></div>
+    </div>
+
+    <!-- Buttons and input at the bottom -->
+    <div class="controls">
+        <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+        <button id="createBarsButton">Create Bars</button>
+
+        <div class="last">
+            <label for="order">Sort Order: </label>
+            <select id="order">
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
+            <label for="speed">Speed:</label>
+            <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+            <button id="sortButton">Sort</button>
+            <div id="output" class="output"></div>
+        </div>
+    </div>
+</div>
+        <div class="main2">
+            <a href="selectionsort.html"><button id="previous">Previous</button></a>
+            <a href="mergesort.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="quicksort.js"></script>
+</body>
+</html>

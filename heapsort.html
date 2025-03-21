@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heap sort</title>
+    <link rel="stylesheet" href="heapsort.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="mergesort.html"><button id="previous">Previous</button></a>
+        <a href="quicksort.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <ul>
+                <h1 style="text-decoration: double underline; ">Heap Sort Algorithm</h1><br>
+                    <li>Heap Sort is a popular and efficient sorting algorithm in computer programming.
+                         Learning how to write the heap sort algorithm requires knowledge of two types of data structures - arrays and trees.     
+                    </li><br>
+                    <li>
+                        <p>The initial set of numbers that we want to sort is stored in an array e.g. 
+                            [10, 3, 76, 34, 23, 32] and after sorting, we get a sorted array [3,10,23,32,34,76].
+                        </p><br>
+                        </li>
+                        <li>
+                            <p>Heap sort works by visualizing the elements of the array as a special kind of complete binary tree called a heap. </p>
+                        <br>
+                        </li>
+
+            </ul><hr><br>
+            <h2>Relationship between Array Indexes and Tree Elements</h2>
+            <br>
+              <li>A complete binary tree has an interesting property that we can use to find the children and parents of any node.</li><br>
+              <li>If the index of any element in the array is i, the element in the index 2i+1 will become the left child and element in 2i+2 index will become the right child.
+                Also, the parent of any element at index i is given by the lower bound of (i-1)/2.</li><br>
+
+                <div class="img">
+                    <img src="images/heap sort/heap 1.png" >
+                    <div class="text">Relationship between array and heap indice</div>
+                </div>
+
+                <p>Let's test it out, </p><br>
+
+                <div id="box" style="background-color: #2d2d2d;">
+                  <pre>
+
+                    <span class="string">
+                        Left child of 1 (index 0)
+                    = element in (2*0+1) index 
+                    = element in 1 index 
+                    = 12
+                    
+                    
+                    Right child of 1
+                    = element in (2*0+2) index
+                    = element in 2 index 
+                    = 9
+                    
+                    Similarly,
+                    Left child of 12 (index 1)
+                    = element in (2*1+1) index
+                    = element in 3 index
+                    = 5
+                    
+                    Right child of 12
+                    = element in (2*1+2) index
+                    = element in 4 index
+                    = 6
+                    </span>
+                  </pre>
+              </div>
+                   <br>
+                    <p>Let us also confirm that the rules hold for finding parent of any node</p>
+                    <br>
+                    <div id="box" style="background-color: #2d2d2d;">
+                        <pre>
+
+                            <span class="string">
+                                Parent of 9 (position 2) 
+                            = (2-1)/2 
+                            = ½ 
+                            = 0.5
+                            ~ 0 index 
+                            = 1
+                            
+                            Parent of 12 (position 1) 
+                            = (1-1)/2 
+                            = 0 index 
+                            = 1
+                            </span>
+
+                        </pre>
+                    </div><br>
+
+                    <p>Understanding this mapping of array indexes to tree positions is critical to
+                         understanding how the Heap Data Structure works and how it is used to implement Heap Sort. </p>
+                        <br>
+                         <hr><br>
+                     <h2>What is Heap Data Structure? </h2><br>
+                     <p>Heap is a special tree-based data structure. A binary tree is said to follow a heap data structure if  </p> 
+                    <br>
+
+                   <ul>
+                       <li>it is a complete binary tree.</li><br>
+                       <li>All nodes in the tree follow the property that they are greater than their children i.e. 
+                        the largest element is at the root and both its children and smaller than the root and so on. Such a heap is called a max-heap.
+                        If instead, all nodes are smaller than their children, it is called a min-heap.</li><br>
+                 </ul>
+             <br>
+             <p>The following example diagram shows Max-Heap and Min-Heap.</p><br>
+              <div class="img">
+                <img src="images/heap sort/heap 2.png" >
+                <div class="text">Max Heap and Min Heap</div>
+              </div><br>
+
+            <p>To learn more about it, please visit Heap Data Structure. </p><br>
+
+            <hr><br>
+
+            <h2>How to "heapify" a tree</h2>
+            <br>
+            <li>Starting from a complete binary tree, 
+                we can modify it to become a Max-Heap by running a function called heapify on all the non-leaf elements of the heap.</li><br>
+            <li>Since heapify uses recursion, it can be difficult to grasp.
+                So let's first think about how you would heapify a tree with just three elements.</li>
+            <br>
+            <div id="box" style="background-color: #2d2d2d;">
+                <pre>
+
+                    <span class="comment">heapify</span><span class="string">(array) </span>
+                           <span class="comment">Root=</span> <span class="string">array[0]    </span>
+                          <span class="comment"> Largest = largest <span class="string">( array[0] , array [2*0 + 1]. array[2*0+2])  </span>
+                           <span class="keyword">if</span> <span class="comment">(Root != Largest) </span>
+                    <span class="comment">          Swap(Root, Largest) </span>
+
+                </pre>
+            </div><br>
+
+            <div class="img">
+                <img src="images/heap sort/heap 3.png" >
+                <div class="text">Heapify base cases</div>
+            </div>
+            <br>
+            <li>The example above shows two scenarios - one in which the root is the largest element and we don't need to do anything.
+                And another in which the root had a larger element as a child and we needed to swap to maintain max-heap property.
+            </li><br>
+            <p>If you're worked with recursive algorithms before, you've probably identified that this must be the base case. </p>
+            <br>
+            <p>Now let's think of another scenario in which there is more than one level.</p><br>
+
+            <div class="img">
+                <img src="images/heap sort/heap 4.png" >
+                <div class="text">How to heapify root element when its subtrees are already max heaps</div>
+            </div><br>
+
+            <p>The top element isn't a max-heap but all the sub-trees are max-heaps.  </p>
+            <br>
+            <p>To maintain the max-heap property for the entire tree, 
+            we will have to keep pushing 2 downwards until it reaches its correct position.</p><br>
+
+            <div class="img">
+                    <img src="images/heap sort/heap 5.png" >
+                    <div class="text">How to heapify root element when its subtrees are max-heaps </div>
+           </div><br>
+                <p>Thus, to maintain the max-heap property in a tree where both sub-trees are max-heaps,
+                 we need to run heapify on the root element repeatedly until it is larger than its children or it becomes a leaf node. </p><br>
+                <p>We can combine both these conditions in one heapify function as</p><br>
+
+                <div id="box" style="background-color: #2d2d2d;">
+                    <pre>
+
+                      <span class="comment">void heapify(int arr[], int n, int i) { </span>
+                           <span class="string">// Find largest among root, left child and right child </span>
+                         <span class="comment">int largest = i ;</span>
+                         <span class="comment">int </span><span class="keyword"> left </span> <span class="comment"> = </span><span class="string"> 2 </span> <span class="comment">* i + </span><span class="string">1</span> <span class="comment">;</span>
+                            <span class="comment">int </span><span class="keyword"> right </span> <span class="comment"> = </span><span class="string"> 2 </span> <span class="comment">* i + </span><span class="string">2</span> <span class="comment">;</span>
+
+                      <span class="keyword">if</span> <span class="comment">(</span> <span class="keyword"> left </span> <span class="comment"> < n && arr [</span> <span class="keyword">left</span> <span class="comment">] arr [largest])</span>
+                        <span class="comment">largest = </span> <span class="keyword">left</span> <span class="comment">;</span>
+
+                        <span class="keyword">if</span> <span class="comment">(</span> <span class="keyword"> right </span> <span class="comment"> < n && arr [</span> <span class="keyword">left</span> <span class="comment">] arr [largest])</span>
+                        <span class="comment">largest = </span> <span class="keyword"> right </span> <span class="comment">;</span>
+
+                        <span class="string">// swap and continue heapifying if root is not largest </span>
+                        <span class="keyword">if</span> <span class="comment">(largest != i) {</span>
+                            <span class="string">swap</span> <span class="comment">(&arr[i],&arr[largest]);
+                                  heapify (arr, n , largest);
+                               }
+                             }
+                             </span>
+                     </pre>
+
+                </div>
+                <br>
+                <p>This function works for both the base case and for a tree of any size. 
+                We can thus move the root element to the correct position to maintain the max-heap 
+                status for any tree size as long as the sub-trees are max-heaps.  </p><br>
+                <hr><br><br>
+
+                <h1>Build max-heap </h1>
+                <p>To build a max-heap from any tree, we can thus star heapifying each sub-tree from the bottom up and
+                 end up with a max-heap after the function is applied to all the elements including the root element.</p><br>
+
+                 <p>In the case of a complete tree, the first index of a non-leaf node is given by n/2 - 1.
+                 All other nodes after that are leaf-nodes and thus don't need to be heapified. </p><br>
+
+                 <p>So, we can build a maximum heap as </p><br>
+
+                 <div id="box" style="background-color: #2d2d2d;">
+                    <pre>
+
+                        <span class="string"> // Build heap (rearrange array)</span>
+                        <span class="keyword">for </span><span class="comment"> ( int i = n / </span><span class="string">  2 - 1 </span><span class="comment">; i >= </span> <span class="string"> 0</span><span class="comment">; i--)</span>
+                        <span class="keyword">heapify</span><span class="comment">(arr, n , i);</span>
+
+                    </pre>
+                 </div><br>
+
+                 <div class="img">
+                    <img src="images/heap sort/heap 6.png" >
+                    <div class="text">Create array and calculate i</div>
+                </div><br>
+
+                <div class="img">
+                    <img src="images/heap sort/heap 7.png" >
+                    <div class="text">Steps to build max heap for heap sort
+                    </div>
+                </div><br>
+
+                <div class="img">
+                    <img src="images/heap sort/heap 8.png" >
+                    <div class="text">Steps to build max heap for heap sort</div>
+                </div><br>
+                <div class="img">
+                    <img src="images/heap sort/heap 9.png" >
+                    <div class="text">Steps to build max heap for heap sort
+                    </div>
+                </div><br>
+
+                <p>As shown in the above diagram, we start by heapifying the lowest smallest trees and gradually
+                 move up until we reach the root element.
+
+                </p><br>
+                <p>If you've understood everything till here, congratulations, you are on your way to mastering the Heap sort.</p>
+                <br><hr><br>
+                <h1>Working of Heap Sort</h1>
+
+                <ol>
+                    <li>Since the tree satisfies Max-Heap property, then the largest item is stored at the root node.</li><br>
+                    <li><b>Swap:</b> Remove the root element and put at the end of the array (nth position) Put the last item of the tree (heap) at the vacant place. </li><br>
+                    <li><b>Remove:</b> Reduce the size of the heap by 1.</li><br>
+                    <li><b>Heapify:</b>the root element again so that we have the highest element at root. </li><br>
+                    <li>The process is repeated until all the items of the list are sorted.</li><br>
+                </ol>
+
+                <div class="img">
+                    <img src="images/heap sort/heap 10.png" >
+                    <div class="text">Swap, Remove, and Heapify</div>
+                </div><br>
+
+              <p>The code below shows the operation.</p><br>
+              <div id="box" style="background-color: #2d2d2d;">
+                <pre>
+
+                    <span class="string">// Heap sort</span>
+                    <span class="keyword">for </span><span class="comment">(int i = n - </span><span class="string"> 1</span><span class="comment">; i >=</span><span class="string">0</span><span class="string"> i--) {</span>
+                        <span class="keyword">swap</span><span class="comment">(&arr[</span><span class="string">0</span><span class="comment">], &arr[i]);</span>
+
+
+                        <span class="string">//Heapify root element to grt highest element at root again</span>
+                        <span class="keyword">heapify</span><span class="comment">(arr,  i, </span><span class="string">0</span><span class="comment">);
+                        }
+                        </span>
+                    
+                </pre>
+              </div>
+              <br><hr><br>
+
+            <h2>heap Sort Code in Python, Java and C/C++</h2>
+<!-- test -->
+<br>
+<div class="navbar">
+    <button class="tab active" onclick="showCode('python')">Python</button>
+    <button class="tab" onclick="showCode('java')">Java</button>
+    <button class="tab" onclick="showCode('c')">C</button>
+    <button class="tab" onclick="showCode('cpp')">C++</button>
+</div>
+
+<div class="code-container">
+    <!-- Python code for Heap Sort -->
+    <pre id="python" class="code-block active">
+        <span class="comment"># Heap sort in Python</span>
+        <span class="keyword">def</span> heapify(arr, n, i):
+            largest = i
+            l = 2 * i + 1
+            r = 2 * i + 2
+
+            <span class="keyword">if</span> l < n <span class="keyword">and</span> arr[l] > arr[largest]:
+                largest = l
+
+            <span class="keyword">if</span> r < n <span class="keyword">and</span> arr[r] > arr[largest]:
+                largest = r
+
+            <span class="keyword">if</span> largest != i:
+                arr[i], arr[largest] = arr[largest], arr[i]
+                heapify(arr, n, largest)
+        
+        <span class="keyword">def</span> heapSort(arr):
+            n = len(arr)
+            <span class="keyword">for</span> i <span class="keyword">in</span> range(n // 2 - 1, -1, -1):
+                heapify(arr, n, i)
+            <span class="keyword">for</span> i <span class="keyword">in</span> range(n - 1, 0, -1):
+                arr[i], arr[0] = arr[0], arr[i]
+                heapify(arr, i, 0)
+        
+        data = [-2, 45, 0, 11, -9]
+        heapSort(data)
+        <span class="keyword">print</span>(<span class="string">'Sorted Array in Ascending Order:'</span>)
+        <span class="keyword">print</span>(data)
+    </pre>
+
+    <!-- Java code for Heap Sort -->
+    <pre id="java" class="code-block">
+        <span class="comment">// Heap sort in Java</span>
+        <span class="keyword">class</span> HeapSort {
+            <span class="keyword">void</span> heapify(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n, <span class="keyword">int</span> i) {
+                <span class="keyword">int</span> largest = i;
+                <span class="keyword">int</span> l = 2 * i + 1;
+                <span class="keyword">int</span> r = 2 * i + 2;
+
+                <span class="keyword">if</span> (l < n && arr[l] > arr[largest])
+                    largest = l;
+
+                <span class="keyword">if</span> (r < n && arr[r] > arr[largest])
+                    largest = r;
+
+                <span class="keyword">if</span> (largest != i) {
+                    <span class="keyword">int</span> swap = arr[i];
+                    arr[i] = arr[largest];
+                    arr[largest] = swap;
+                    heapify(arr, n, largest);
+                }
+            }
+
+            <span class="keyword">void</span> heapSort(<span class="keyword">int</span>[] arr) {
+                <span class="keyword">int</span> n = arr.length;
+                <span class="keyword">for</span> (int i = n / 2 - 1; i >= 0; i--)
+                    heapify(arr, n, i);
+                <span class="keyword">for</span> (int i = n - 1; i > 0; i--) {
+                    <span class="keyword">int</span> temp = arr[0];
+                    arr[0] = arr[i];
+                    arr[i] = temp;
+                    heapify(arr, i, 0);
+                }
+            }
+        }
+    </pre>
+
+    <!-- C code for Heap Sort -->
+    <pre id="c" class="code-block">
+        <span class="comment">// Heap sort in C</span>
+        <span class="keyword">void</span> heapify(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> i) {
+            <span class="keyword">int</span> largest = i;
+            <span class="keyword">int</span> l = 2 * i + 1;
+            <span class="keyword">int</span> r = 2 * i + 2;
+
+            <span class="keyword">if</span> (l < n && arr[l] > arr[largest])
+                largest = l;
+
+            <span class="keyword">if</span> (r < n && arr[r] > arr[largest])
+                largest = r;
+
+            <span class="keyword">if</span> (largest != i) {
+                <span class="keyword">int</span> temp = arr[i];
+                arr[i] = arr[largest];
+                arr[largest] = temp;
+                heapify(arr, n, largest);
+            }
+        }
+
+        <span class="keyword">void</span> heapSort(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n) {
+            <span class="keyword">for</span> (int i = n / 2 - 1; i >= 0; i--)
+                heapify(arr, n, i);
+            <span class="keyword">for</span> (int i = n - 1; i > 0; i--) {
+                <span class="keyword">int</span> temp = arr[0];
+                arr[0] = arr[i];
+                arr[i] = temp;
+                heapify(arr, i, 0);
+            }
+        }
+    </pre>
+
+    <!-- C++ code for Heap Sort -->
+    <pre id="cpp" class="code-block">
+        <span class="comment">// Heap sort in C++</span>
+        <span class="keyword">void</span> heapify(vector&lt;int&gt;& arr, <span class="keyword">int</span> n, <span class="keyword">int</span> i) {
+            <span class="keyword">int</span> largest = i;
+            <span class="keyword">int</span> l = 2 * i + 1;
+            <span class="keyword">int</span> r = 2 * i + 2;
+
+            <span class="keyword">if</span> (l < n && arr[l] > arr[largest])
+                largest = l;
+
+            <span class="keyword">if</span> (r < n && arr[r] > arr[largest])
+                largest = r;
+
+            <span class="keyword">if</span> (largest != i) {
+                swap(arr[i], arr[largest]);
+                heapify(arr, n, largest);
+            }
+        }
+
+        <span class="keyword">void</span> heapSort(vector&lt;int&gt;& arr) {
+            <span class="keyword">int</span> n = arr.size();
+            <span class="keyword">for</span> (int i = n / 2 - 1; i >= 0; i--)
+                heapify(arr, n, i);
+            <span class="keyword">for</span> (int i = n - 1; i > 0; i--) {
+                swap(arr[0], arr[i]);
+                heapify(arr, i, 0);
+            }
+        }
+    </pre>
+</div>
+<!-- test end -->
+
+
+         <br>
+         <hr>
+         <br>
+         <h2>Heap Sort Complexity</h2><br>
+         <table id="table">
+            <tr>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Best</td>
+                <td id="second">O(nlog n)</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td id="second">O(nlog n)</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td id="second">O(nlog n)</td>
+            </tr>
+            <tr>
+                <td>Space Complexity</td>
+                <td id="second">O(1)</td>
+            </tr>
+            <tr>
+                <td>Stability</td>
+                <td id="second">No</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <br>
+
+        <ul>
+            <li><p>Heap Sort has O(nlog n) time complexities for all the cases ( best case, average case, and worst case).</p></li><br>
+
+           <li><p>Let us understand the reason why. The height of a complete binary tree containing n elements is log n</p></li><br>
+            
+            <li><p>As we have seen earlier, to fully heapify an element whose subtrees are already max-heaps, we need to keep comparing the element with its left and 
+                right children and pushing it downwards until it reaches a point where both its children are smaller than it.</p></li><br>
+            
+           <li><p> In the worst case scenario, we will need to move an element from the root to the leaf node making a multiple of log(n) comparisons and swaps.</p></li><br>
+            
+            <li><p>During the build_max_heap stage, we do that for n/2 elements so the worst case complexity of the build_heap step is n/2*log n ~ nlog n.</p></li><br>
+            
+            <li><p>During the sorting step, we exchange the root element with the last element and heapify the root element. For each element, 
+                this again takes log n worst time because we might have to bring the element all the way from the root to the leaf. 
+                Since we repeat this n times, the heap_sort step is also nlog n.</p></li><br>
+            
+           <li><p> Also since the build_max_heap and heap_sort steps are executed one after another, the algorithmic complexity is not 
+            multiplied and it remains in the order of nlog n.</p></li><br>
+            
+           <li><p> Also it performs sorting in O(1) space complexity. Compared with Quick Sort, it has a better worst case ( O(nlog n) ). Quick Sort has complexity O(n^2) for worst case. 
+            But in other cases, Quick Sort is fast. Introsort is an alternative to heapsort that combines quicksort and heapsort to retain advantages of both: 
+            worst case speed of heapsort and average speed of quicksort.</p></li><br>
+        </ul>
+            
+            <hr><br>
+
+        <h2>Heap Sort Applications</h2><br>
+
+        <ul>
+            <li><p>Systems concerned with security and embedded systems such as Linux Kernel use Heap Sort because of the O(n log n)
+                upper bound on Heapsort's running time and constant O(1) upper bound on its auxiliary storage.</p></li><br>
+       
+            <li>
+                <p>Although Heap Sort has O(n log n) time complexity even for the worst case, it doesn't have more applications ( compared to other sorting algorithms like Quick Sort, Merge Sort ). 
+                    However, its underlying data structure, heap, can be efficiently used if we want to extract the smallest (or largest) 
+                    from the list of items without the overhead of keeping the remaining items in the sorted order. For e.g Priority Queues.</p>
+            </li>
+        </ul><br>
+           <br><hr><br>
+
+
+        <!-- heap sort visualizer -->
+        <div class="container">
+            <h1>Heap Sort Visualizer</h1>
+        
+            <!-- Box for displaying bars -->
+            <div id="barsBox">
+                <div id="barsContainer"></div>
+            </div>
+        
+            <!-- Buttons and input at the bottom -->
+            <div class="controls">
+                <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+                <button id="createBarsButton">Create Bars</button>
+        
+                <div class="last">
+                    <label for="speed">Speed:</label>
+                    <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+                    <button id="sortButton">Sort</button>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main2">
+            <a href="mergesort.html"><button id="previous">Previous</button></a>
+            <a href="singlelinklist.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="heapsort.js"></script>
+</body>
+</html>

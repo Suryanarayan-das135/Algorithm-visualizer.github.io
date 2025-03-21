@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked list</title>
+    <link rel="stylesheet" href="QuickSort.css">
+</head>
+<body><!--body start-->
+    <div class="main2">
+        <a href="heapsort.html"><button id="previous">Previous</button></a>
+        <a href="single_link0.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Linked List </h1><br><br>
+            <p>A linked list is a linear data structure that includes a series of connected nodes. Here, each node stores the <b>data</b> and the <b>address</b> of the next node. For example,
+
+            </p><br>
+            <div class="img">
+                <img src="images/link list/linked-list-concept -1.webp" >
+                <div class="text">Linked List data structure </div>
+            </div>
+            <div><p>You have to start somewhere, so we give the address of the first node a special name called <b>HEAD</b>. Also, the last node in the linked list can be identified because its next portion points to <b>NULL</b>.</p></div>
+      <br><div><p>Linked lists can be of multiple types: <b>singly</b>, <b>doubly</b>, and <b>circular</b> linked list. In this article, we will focus on the <b>singly linked list</b>.</p></div><br>
+          
+       <h2>Representation of Linked List</h2>  
+        <br><p>Let's see how each node of the linked list is represented. Each node consists:</p><br>
+        <ul>
+            <li>A data item</li><br>
+            <li>An address of another node</li><br>
+        </ul>
+        <p>We wrap both the data item and the next node reference in a struct as:
+
+        </p><br>
+
+        <div id="box" style="background-color: #2d2d2d;">
+            <pre>    
+            <span class="keyword">struct </span><span class="string">node</span>
+                <span class="string">{</span>
+                    <span class="keyword">int </span><span class="string">data;</span>
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*next;</span>
+                <span class="string">};</span>    
+            </pre>
+        </div><br>
+
+        <ul>
+            <li>Understanding the structure of a linked list node is the key to having a grasp on it.</li><br>
+            <li><p>Each struct node has a data item and a pointer to another struct node. Let us create a simple Linked List with three items to understand how this works.</p></li><br>
+        </ul>
+
+        <div id="box" style="background-color: #2d2d2d;">
+            <pre>
+
+            <span class="string">/* Initialize nodes */</span>    
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*head;</span>
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*one = NULL;</span>  
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*two = NULL;</span>
+            <span class="keyword">struct </span><span class="string">node </span><span class="string">*three = NULL;</span> 
+
+            <span class="string">/* Allocate memory */
+            </span> 
+            <span class="string">one = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+            <span class="string">two = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+            <span class="string">three = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+            </span>
+
+            <span class="string">/* Connect nodes */</span>
+            <span>one->next = two;</span>
+            <span>two->next = three;</span>
+            <span>three->next = NULL;</span>
+
+            <span class="comment">/* Save address of first node in head */</span>
+            <span>head = one;
+            </span>
+            </pre>
+        </div><br>
+        <div><p>In just a few steps, we have created a simple linked list with three nodes.</p></div>
+        <br>
+        <div class="img">
+            <img src="images/link list/linked-list-2.webp">
+            <div class="text">Linked List Representation</div>
+        </div><br>
+        <div><p>The power of a linked list comes from the ability to break the chain and rejoin it. E.g. if you wanted to put an element 4 between 1 and 2, the steps would be:</p>
+        <br> <ul>
+            <li>Create a new struct node and allocate memory to it.</li>
+            <br><li>Add its data value as 4</li>
+            <br><li>Point its next pointer to the struct node containing 2 as the data value</li><br>
+            <li>Change the next pointer of "1" to the node we just created.</li><br><br><hr><br>
+         </ul>
+         <br>
+        </div>
+        <h2>Linked List Utility</h2>
+        <br><div>
+            <ul>
+                <li><p>Lists are one of the most popular and efficient data structures, with implementation in every programming language like C, C++, Python, Java, and C#.</p></li><br>
+                <li><p>Apart from that, linked lists are a great way to learn how pointers work. By practicing how to manipulate linked lists, you can prepare yourself to learn more advanced data structures like graphs and trees.</p></li><br><br><hr><br><br>
+            </ul>
+        </div>
+        <h2>Linked List Implementation in Python, Java, C, and C++</h2>
+
+<div class="navbar">
+    <button class="tab active" onclick="showCode('python')">Python</button>
+    <button class="tab" onclick="showCode('java')">Java</button>
+    <button class="tab" onclick="showCode('c')">C</button>
+    <button class="tab" onclick="showCode('cpp')">C++</button>
+</div>
+
+<div class="code-container">
+    <pre id="python" class="code-block active">
+        <span class="comment"># Linked List implementation in Python</span>
+        <span class="keyword">class</span> Node:
+            <span class="keyword">def</span> __init__(self, data):
+                self.data = data
+                self.next = None
+
+        <span class="keyword">class</span> LinkedList:
+            <span class="keyword">def</span> __init__(self):
+                self.head = None
+            
+            <span class="keyword">def</span> append(self, data):
+                new_node = Node(data)
+                <span class="keyword">if</span> not self.head:
+                    self.head = new_node
+                    <span class="keyword">return</span>
+                temp = self.head
+                <span class="keyword">while</span> temp.next:
+                    temp = temp.next
+                temp.next = new_node
+            
+            <span class="keyword">def</span> display(self):
+                temp = self.head
+                <span class="keyword">while</span> temp:
+                    <span class="keyword">print</span>(temp.data, end=" -> ")
+                    temp = temp.next
+                <span class="keyword">print</span>("None")
+    </pre>
+
+    <pre id="java" class="code-block">
+        <span class="comment">// Linked List implementation in Java</span>
+        <span class="keyword">class</span> Node {
+            <span class="keyword">int</span> data;
+            Node next;
+            
+            Node(<span class="keyword">int</span> data) {
+                <span class="keyword">this</span>.data = data;
+                <span class="keyword">this</span>.next = null;
+            }
+        }
+
+        <span class="keyword">class</span> LinkedList {
+            Node head;
+            
+            <span class="keyword">void</span> append(<span class="keyword">int</span> data) {
+                Node newNode = <span class="keyword">new</span> Node(data);
+                <span class="keyword">if</span> (head == null) {
+                    head = newNode;
+                    <span class="keyword">return</span>;
+                }
+                Node temp = head;
+                <span class="keyword">while</span> (temp.next != null) {
+                    temp = temp.next;
+                }
+                temp.next = newNode;
+            }
+            
+            <span class="keyword">void</span> display() {
+                Node temp = head;
+                <span class="keyword">while</span> (temp != null) {
+                    System.out.print(temp.data + " -> ");
+                    temp = temp.next;
+                }
+                System.out.println("None");
+            }
+        }
+    </pre>
+
+    <pre id="c" class="code-block">
+        <span class="comment">// Linked List implementation in C</span>
+        <span class="keyword">struct</span> Node {
+            <span class="keyword">int</span> data;
+            <span class="keyword">struct</span> Node* next;
+        };
+
+        <span class="keyword">void</span> append(<span class="keyword">struct</span> Node** head, <span class="keyword">int</span> data) {
+            <span class="keyword">struct</span> Node* newNode = (<span class="keyword">struct</span> Node*)malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Node));
+            newNode->data = data;
+            newNode->next = NULL;
+            <span class="keyword">if</span> (*head == NULL) {
+                *head = newNode;
+                <span class="keyword">return</span>;
+            }
+            <span class="keyword">struct</span> Node* temp = *head;
+            <span class="keyword">while</span> (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+    </pre>
+
+    <pre id="cpp" class="code-block">
+        <span class="comment">// Linked List implementation in C++</span>
+        <span class="keyword">class</span> Node {
+        <span class="keyword">public</span>:
+            <span class="keyword">int</span> data;
+            Node* next;
+            
+            Node(<span class="keyword">int</span> data) {
+                <span class="keyword">this</span>->data = data;
+                <span class="keyword">this</span>->next = nullptr;
+            }
+        };
+
+        <span class="keyword">class</span> LinkedList {
+        <span class="keyword">public</span>:
+            Node* head;
+            
+            LinkedList() { head = nullptr; }
+            
+            <span class="keyword">void</span> append(<span class="keyword">int</span> data) {
+                Node* newNode = <span class="keyword">new</span> Node(data);
+                <span class="keyword">if</span> (!head) {
+                    head = newNode;
+                    <span class="keyword">return</span>;
+                }
+                Node* temp = head;
+                <span class="keyword">while</span> (temp->next) {
+                    temp = temp->next;
+                }
+                temp->next = newNode;
+            }
+            
+            <span class="keyword">void</span> display() {
+                Node* temp = head;
+                <span class="keyword">while</span> (temp) {
+                    std::cout << temp->data << " -> ";
+                    temp = temp->next;
+                }
+                std::cout << "None" << std::endl;
+            }
+        };<br><br><br>
+    </pre>
+</div>
+<h2>Linked List Complexity</h2><br>
+<table id="table">
+    <tr>
+        <th>Operation</th>
+        <th>Time Complexity</th>
+    </tr>
+    <tr>
+        <td>Access</td>
+        <td id="second">O(n)</td>
+    </tr>
+    <tr>
+        <td>Search</td>
+        <td id="second">O(n)</td>
+    </tr>
+    <tr>
+        <td>Insertion (at head)</td>
+        <td id="second">O(1)</td>
+    </tr>
+    <tr>
+        <td>Insertion (at tail)</td>
+        <td id="second">O(n)</td>
+    </tr>
+    <tr>
+        <td>Deletion (at head)</td>
+        <td id="second">O(1)</td>
+    </tr>
+    <tr>
+        <td>Deletion (at tail)</td>
+        <td id="second">O(n)</td>
+    </tr>
+    <tr>
+        <td>Space Complexity</td>
+        <td id="second">O(n)</td>
+    </tr>
+</table>
+<br>
+<hr>
+<br>
+<nav><h2>Linked List Applications</h2>
+<br><ul>
+    <li>Dynamic memory allocation</li><br>
+    <li>Implemented in stack and queue</li><br>
+    <li>In <b>undo</b> functionality of softwares</li>
+    <br>
+    <li>Hash tables, Graphs</li><br>
+</ul>
+</nav>
+<br>
+
+</div>
+<div class="main2">
+    <a href="heapsort.html"><button id="previous">Previous</button></a>
+    <a href="single_link0.html"><button id="next">Next</button></a>
+
+
+
+</div>
+</div>
+</div>
+
+        <!----> 
+               <script src="quicksort.js"></script>
+</body>
+</html>

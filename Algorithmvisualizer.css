@@ -1,0 +1,145 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "popins", sans-serif;
+}
+body{
+    background-color: #27135a;
+    color: white;
+}
+/*Header section*/
+
+.main{
+    background-image: url("images/bg1.jpg");
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.header{
+    border: 1px;
+    text-align: right;
+    padding: 35px;
+}
+#link{
+    color: white;
+    text-decoration: none;
+    border: 1px;
+    padding: 10px;
+    margin: 15px;
+    font-size: large;
+}
+#link:hover{
+    background-color: rgb(109, 185, 221);
+    border-radius: 10px;
+}
+
+
+
+/* new main part 2 */
+#mywork{
+    padding: 50px ;
+    background-color:#27135a;
+    color: aqua;
+    font-size: larger;
+}
+
+.workl-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+    grid-gap:40px;
+    margin-top: 50px;
+}
+
+.work{
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.work img{
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.layer{
+    width: 100%;
+    height:0;
+    background: linear-gradient(rgba(0,0,0,0.6),#52a3cc);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    font-size: 14px;
+    transition: height 0.5s;
+}  
+
+.layer h3{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.layer a{
+    margin: 20px;
+    color: #ff004f;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    background: aqua;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.work:hover img{
+    transform: scale(1.1);
+}
+
+.work:hover .layer{
+    height: 100%;
+}
+
+.btn{
+    display: block;
+    background-color: #ff004f;
+    margin: 50px auto;
+    width: fit-content;
+    border: 1px solid #ff004f;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.5s;
+}
+
+.btn:hover{
+    background: #df064a;
+    
+}
+
+@media (max-width: 575px) {
+    .main{
+        background-image: url("images/bgf2.jpg");
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .main{
+        background-image: url("images/bgf.jpg");
+    }
+}

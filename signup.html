@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: beige;
+}
+
+.box{
+    width: 300px;
+    margin: 200px auto;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.box:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input_group{
+    margin-bottom: 15px;
+}
+
+.input_group label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input_group input{
+    width: 90%;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"]{
+    width: 100%;
+    height: 40px;
+    background-color: #27b81ad5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+button[type="submit"]:hover{
+    background-color: #3e8e41;
+    
+}
+
+a{
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+A:hover{
+    color: #3e8e41;
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <form class="login-form">
+            <h2>SIGN UP</h2>
+            <div class="input_group">
+                <label for="username">Username:</label> 
+                <input type="text" id="username" name="username" placeholder="Enter Your Name" required>
+            </div>
+
+            <div class="input_group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter Your Password" required>
+            </div>
+            <div class="input_group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Confoirm Password" required>
+            </div>
+            <button type="submit">Sign up</button>
+            <p>Already have an Account ?<a href="login.html">Log In</a></p>
+        </form>
+    </div>
+</body>
+</html>

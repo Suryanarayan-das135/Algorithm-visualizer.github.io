@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Visualizer</title>
+    <link rel="stylesheet" href="bubblesort.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bubble Sort Visualizer</h1>
+        
+        <!-- Box for displaying bars -->
+        <div id="barsBox">
+            <div id="barsContainer"></div>
+        </div>
+
+        <!-- Buttons and input at the bottom -->
+        <div class="controls">
+            <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+            <button id="createBarsButton">Create Bars</button>
+
+            <div class="last">
+                <label for="order">Sort Order: </label>
+                <select id="order">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+                <label for="speed">Speed:</label>
+                <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+                <button id="sortButton">Sort</button>
+                <div id="output" class="output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bubblesort.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack visualizer</title>
+    <link rel="stylesheet" href="stack.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="CircularLinkList.html"><button id="previous">Previous</button></a>
+        <a href="queue.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline;">Stack Data Structure</h1><br><br>
+            <ul>
+                <li>A stack is a linear data structure that follows the principle of <b>Last In First Out (LIFO)</b>. This means the last element inserted inside the stack is removed first.</li>
+                <br>
+                <li>You can think of the stack data structure as the pile of plates on top of another.</li>
+            </ul>
+            <br>
+            
+            <br>
+            <div class="img">
+                <img src="stack_images/stack-of-plates_1.webp" >
+                <div class="text">Stack representation similar to a pile of plate</div>
+            </div>
+            <p>Here,You Can:</p><br>
+            <ul>
+                <li>Put a new plate on top</li>
+                <br>
+                <li>Remove the top plate</li><br>
+            </ul><br>
+            <p>And, if you want the plate at the bottom, you must first remove all the plates on top. This is exactly how the stack data structure works.</p><br><br>
+            <hr>
+        </div>
+        <div class="main2">
+            <ol>
+                <h2>LIFO Principle of Stack</h2><br>
+                <ul type="circle" id="textbox1">
+                    <li>In programming terms, putting an item on top of the stack is called push and removing an item is called pop.</li>
+                </ul>
+                <div class="img">
+                    <img src="stack_images/stack_2.webp" >
+                    <div class="text">Stack Push and Pop Operations</div>
+                </div>
+                <ul>
+                    <li>In the above image, although item 3 was kept last, it was removed first. This is exactly how the <b>LIFO (Last In First Out) Principle works</b>.</li><br>
+
+                    <li>We can implement a stack in any programming language like C, C++, Java, Python or C#, but the specification is pretty much the same..</li>
+                </ul>
+                <br>
+                <br>
+                <hr>
+                <br><br>
+
+                <h2>Basic Operations of Stack</h2><br>
+                <p>There are some basic operations that allow us to perform different actions on a stack.</p><br>
+
+                <ul>
+                    <li><b>Push:</b> Add an element to the top of a stack.</li><br>
+                    <li><b>Pop:</b> Remove an element from the top of a stack.</li><br>
+                    <li><b>IsEmpty:</b> Check if the stack is empty.</li><br>
+                    <li><b>IsFull:</b> Check if the stack is full.</li><br>
+                    <li><b>Peek:</b> Get the value of the top element without removing it.</li><br>
+                </ul><br><br><hr><br><br>
+
+                <h2>Working of Stack Data Structure</h2><br>
+                <p>The operations work as follows:</p><br>
+
+                <ol>
+                    <li>A pointer called ''TOP'' is used to keep track of the top element in the stack.</li><br>
+                    <li>When initializing the stack, we set its value to -1 so that we can check if the stack is empty by comparing "TOP == -1".</li><br>
+                    <li>On pushing an element, we increase the value of "TOP" and place the new element in the position pointed to by "TOP".</li><br>
+                    <li>On popping an element, we return the element pointed to by "TOP" and reduce its value.</li><br>
+                    <li>Before pushing, we check if the stack is already full.</li><br>
+                    <li>Before popping, we check if the stack is already empty.</li><br>
+                </ol>
+
+                <div class="img">
+                    <img src="stack_images/stack-3.webp" >
+                    <div class="text">Working of Stack Data Structure
+                    </div>
+                </div><br><hr><br><br>
+
+            
+
+            
+                
+            <h2>Insertion Sort Algorithm</h2><br>
+            <div id="box" style="background-color: #2d2d2d;">
+                    <span class="string">
+                        <li>Checks if the stack is full.</li><br>
+                    <li>If the stack is full, produces an error and exit.</li><br>
+                    <li>If the stack is not full, increments top to point to the next empty space.</li><br>
+                    <li>Adds data element to the stack location, where top is pointing.</li><br>
+                    <li>Returns success.</li>
+                    </span>
+            </div>
+            
+            <br>
+            <br>
+            <hr>
+            <br>
+            <h2>Stack Implementations in Python, Java and C/C++</h2><br>
+            <p>The most common stack implementation is using arrays, but it can also be implemented using lists.
+            </p>
+            <!-- test -->
+<br>
+<div class="navbar">
+    <button class="tab active" onclick="showCode('python')">Python</button>
+    <button class="tab" onclick="showCode('java')">Java</button>
+    <button class="tab" onclick="showCode('c')">C</button>
+    <button class="tab" onclick="showCode('cpp')">C++</button>
+</div>
+
+<div class="code-container">
+    <pre id="python" class="code-block active">
+        <span class="comment"># Stack implementation in Python</span>
+        <span class="keyword">class</span> Stack:
+            <span class="keyword">def</span> __init__(self):
+                <span class="keyword">self</span>.stack = []
+            
+            <span class="keyword">def</span> push(self, item):
+                <span class="keyword">self</span>.stack.append(item)
+            
+            <span class="keyword">def</span> pop(self):
+                <span class="keyword">if</span> not <span class="keyword">self</span>.is_empty():
+                    return <span class="keyword">self</span>.stack.pop()
+                <span class="keyword">else</span>:
+                    <span class="keyword">return</span> None
+            
+            <span class="keyword">def</span> is_empty(self):
+                <span class="keyword">return</span> len(<span class="keyword">self</span>.stack) == 0
+            
+            <span class="keyword">def</span> display(self):
+                <span class="keyword">return</span> <span class="keyword">self</span>.stack
+        
+        <span class="keyword"># Example usage</span>
+        stack = Stack()
+        stack.push(10)
+        stack.push(20)
+        stack.push(30)
+        <span class="keyword">print</span>(stack.display())  <span class="comment"># Output: [10, 20, 30]</span>
+        stack.pop()
+        <span class="keyword">print</span>(stack.display())  <span class="comment"># Output: [10, 20]</span>
+    </pre>
+    
+    <pre id="java" class="code-block">
+        <span class="comment">// Stack implementation in Java</span>
+        <span class="keyword">class</span> Stack {
+            <span class="keyword">private</span> int[] stack;
+            <span class="keyword">private</span> int top;
+            
+            <span class="keyword">public</span> Stack(<span class="keyword">int</span> size) {
+                stack = new <span class="keyword">int</span>[size];
+                top = -1;
+            }
+            
+            <span class="keyword">public void</span> push(<span class="keyword">int</span> item) {
+                <span class="keyword">if</span> (top < stack.length - 1) {
+                    stack[++top] = item;
+                }
+            }
+            
+            <span class="keyword">public int</span> pop() {
+                <span class="keyword">if</span> (top >= 0) {
+                    <span class="keyword">return</span> stack[top--];
+                }
+                <span class="keyword">return</span> -1; <span class="comment">// Indicating stack is empty</span>
+            }
+            
+            <span class="keyword">public boolean</span> isEmpty() {
+                <span class="keyword">return</span> top == -1;
+            }
+            
+            <span class="keyword">public void</span> display() {
+                <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i <= top; i++) {
+                    <span class="keyword">System.out.println</span>(stack[i]);
+                }
+            }
+        }
+        
+        <span class="keyword">// Example usage</span>
+        <span class="keyword">public static void</span> main(String[] args) {
+            Stack stack = new Stack(5);
+            stack.push(10);
+            stack.push(20);
+            stack.push(30);
+            stack.display(); <span class="comment">// Output: 10 20 30</span>
+            stack.pop();
+            stack.display(); <span class="comment">// Output: 10 20</span>
+        }
+    </pre>
+    
+    <pre id="c" class="code-block">
+        <span class="comment">// Stack implementation in C</span>
+        <span class="keyword">#include</span> <span class="keyword">&lt;stdio.h&gt;</span>
+        <span class="keyword">#define</span> MAX 5
+        
+        <span class="keyword">int</span> stack[MAX];
+        <span class="keyword">int</span> top = -1;
+        
+        <span class="keyword">void</span> push(<span class="keyword">int</span> item) {
+            <span class="keyword">if</span> (top < MAX - 1) {
+                stack[++top] = item;
+            }
+        }
+        
+        <span class="keyword">int</span> pop() {
+            <span class="keyword">if</span> (top >= 0) {
+                <span class="keyword">return</span> stack[top--];
+            }
+            <span class="keyword">return</span> -1; <span class="comment">// Indicating stack is empty</span>
+        }
+        
+        <span class="keyword">void</span> display() {
+            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i <= top; i++) {
+                <span class="keyword">printf</span>(<span class="string">"%d\n"</span>, stack[i]);
+            }
+        }
+        
+        <span class="keyword">int</span> main() {
+            push(10);
+            push(20);
+            push(30);
+            display(); <span class="comment">// Output: 10 20 30</span>
+            pop();
+            display(); <span class="comment">// Output: 10 20</span>
+            <span class="keyword">return</span> 0;
+        }
+    </pre>
+    
+    <pre id="cpp" class="code-block">
+        <span class="comment">// Stack implementation in C++</span>
+        <span class="keyword">#include</span> <span class="keyword">&lt;iostream&gt;</span>
+        <span class="keyword">#include</span> <span class="keyword">&lt;vector&gt;</span>
+        
+        <span class="keyword">class</span> Stack {
+            <span class="keyword">private</span>:
+                <span class="keyword">std::vector&lt;int&gt;</span> stack;
+            
+            <span class="keyword">public:</span>
+                <span class="keyword">void</span> push(<span class="keyword">int</span> item) {
+                    stack.push_back(item);
+                }
+                
+                <span class="keyword">int</span> pop() {
+                    <span class="keyword">if</span> (!stack.empty()) {
+                        <span class="keyword">int</span> item = stack.back();
+                        stack.pop_back();
+                        <span class="keyword">return</span> item;
+                    }
+                    <span class="keyword">return</span> -1; <span class="comment">// Indicating stack is empty</span>
+                }
+                
+                <span class="keyword">void</span> display() {
+                    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < stack.size(); i++) {
+                        <span class="keyword">std::cout</span> << stack[i] << <span class="string">"\n"</span>;
+                    }
+                }
+        };
+        
+        <span class="keyword">int</span> main() {
+            Stack stack;
+            stack.push(10);
+            stack.push(20);
+            stack.push(30);
+            stack.display(); <span class="comment">// Output: 10 20 30</span>
+            stack.pop();
+            stack.display(); <span class="comment">// Output: 10 20</span>
+            <span class="keyword">return</span> 0;
+        }
+    </pre>
+</div>
+
+<!-- test end -->
+
+         <br>
+         <hr>
+         <br>
+         <h2>Stack Time Complexity</h2><br>
+         <ol>For the array-based implementation of a stack, the push and pop operations take constant time, i.e. "O(1)".</ol>
+        <br>
+        <hr>
+        <br>
+        <h2>Applications of Stack Data Structure</h2><br>
+        <ul>
+            <li>Although stack is a simple data structure to implement, it is very powerful. The most common uses of a stack are:     
+            </li><br>
+            <li><b>To reverse a word -</b> Put all the letters in a stack and pop them out. Because of the LIFO order of stack, you will get the letters in reverse order.</li><br>
+            <li><b>In compilers -</b> Compilers use the stack to calculate the value of expressions like "2 + 4 / 5 * (7 - 9)" by converting the expression to prefix or postfix form.</li><br>
+            <li><b>In browsers -</b> The back button in a browser saves all the URLs you have visited previously in a stack. Each time you visit a new page, it is added on top of the stack. When you press the back button, the current URL is removed from the stack, and the previous URL is accessed.</li><br>
+            
+        </ul>
+        <br><br><hr><br><br>
+
+        <!-- stack visualizer -->
+
+        <div class="container">
+            <h1>Stack Visualizer</h1>
+    
+            <!-- Stack Visualization -->
+            <div class="stack-container">
+                <div id="stack" class="stack"></div>
+            </div>
+    
+            <!-- Input Field and Buttons -->
+            <div class="controls">
+                <input type="number" id="stackInput" placeholder="Enter a number" />
+                <button onclick="pushToStack()">Push</button>
+                <button onclick="popFromStack()">Pop</button>
+                <button onclick="peekStack()">Peek</button>
+                <button onclick="checkIfEmpty()">Is Empty?</button>
+            </div>
+    
+            <!-- Message Box -->
+            <div id="messageBox" class="message-box">Messages will appear here...</div>
+        </div>
+        
+        <div class="main2">
+            <a href="CircularLinkList.html"><button id="previous">Previous</button></a>
+        <a href="queue.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="stack.js"></script>
+</body>
+</html>

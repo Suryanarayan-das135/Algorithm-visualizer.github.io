@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection sort</title>
+    <link rel="stylesheet" href="selectionsort.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="insertionsort.html"><button id="previous">Previous</button></a>
+        <a href="quicksort.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Selection Sort Algorithm</h1><br><br>
+            <p>Selection sort is a sorting algorithm that selects the smallest element from an unsorted list in each iteration and
+             places that element at the beginning of the unsorted list.</p><br>
+             <hr><br><br>
+
+             <h1>Working of Selection Sort</h1>
+            <ol>
+                <li>Set the first element as minimum</li><br>
+                <div class="img">
+                    <img src="images/selection sort/selection 1.png" >
+                    <div class="text">Select first element as minimum</div>
+                </div><br>
+                <li>Compare minimum with the second element. If the second element is smaller than minimum, assign the second element as minimum. </li><br>
+                <li>Compare minimum with the third element. Again, if the third element is smaller, then assign minimum to the third element otherwise do nothing.
+                     The process goes on until the last element.
+                </li><br>
+
+                <div class="img">
+                    <img src="images/selection sort/selection 2.png" >
+                    <div class="text">Compare minimum with the remaining elements</div>
+                </div><br>
+                <li>After each iteration, minimum is placed in the front of the unsorted list.</li><br>
+
+                <div class="img">
+                    <img src="images/selection sort/selection 3.png" >
+                    <div class="text">Swap the first with minimum </div>
+                </div><br>
+                <li>For each iteration, indexing starts from the first unsorted element.
+                 Step 1 to 3 are repeated until all the elements are placed at their correct positions.</li><br>
+
+                 <div class="img">
+                    <img src="images/selection sort/selection 4.png" >
+                    <div class="text">The first iteration</div>
+                </div><br>
+
+                <div class="img">
+                    <img src="images/selection sort/selection 5.png" >
+                    <div class="text">The second iteration</div>
+                </div><br>
+
+                <div class="img">
+                    <img src="images/selection sort/selection 6.png" >
+                    <div class="text">The third iteration</div>
+                </div><br>
+
+                <div class="img">
+                    <img src="images/selection sort/selection 7.png" >
+                    <div class="text">The fourth iteration</div>
+                </div><br><hr><br>
+
+                <h1>Selection Sort Algorithm</h1>
+                <br>
+                <div id="box" style="background-color: #2d2d2d;">
+                    <pre>
+
+                        <span class="comment">selectionSort(array, size)</span>
+                               <span class="comment"> for i from 0 to size - 1 </span><span class="keyword">do</span>
+                                  <span class="keyword">set </span> <span class="comment">i </span><span class="keyword">as </span><span class="comment"> the </span><span class="keyword"> index  of  </span><span class="comment">the</span><span class="keyword">current minimum</span>
+                                  <span class="keyword">for </span> <span class="comment">j </span><span class="keyword"> from </span><span class="comment"> i + </span><span class="string"> 1 </span><span class="keyword"> to size -  </span><span class="string"> 1 </span><span class="keyword"> do </span>
+                                    <span class="keyword">if </span> <span class="string">array</span><span class="comment"> [j] < </span><span class="string"> array </span><span class="comment"> [ </span><span class="keyword"> current minimum </span><span class="comment"> ] </span>
+                                    <span class="keyword">set </span> <span class="string">j </span><span class="keyword"> as  </span><span class="comment"> the </span><span class="comment"> [ </span><span class="keyword"> new current minimum index  </span>
+                               <span class="keyword">if current minimum is not </span><span class="comment"> i</span>
+                                     <span class="comment">swap</span><span class="string">array</span><span class="comment">[i] </span><span class="keyword"> with </span><span class="string"> array</span><span class="comment">[ </span><span class="keyword"> current minimum </span><span class="comment">]</span>
+                       <span class="keyword"> end </span><span class="comment"> selectionSort</span>
+                      
+                    </pre>
+                </div><br>
+                <hr><br>
+
+            <h2>selection Sort Code in Python, Java and C/C++</h2>
+<!-- test -->
+<br>
+<div class="navbar">
+    <button class="tab active" onclick="showCode('python')">Python</button>
+    <button class="tab" onclick="showCode('java')">Java</button>
+    <button class="tab" onclick="showCode('c')">C</button>
+    <button class="tab" onclick="showCode('cpp')">C++</button>
+</div>
+
+<div class="code-container">
+    <pre id="python" class="code-block active">
+        <span class="comment"># Selection sort in Python</span>
+        <span class="keyword">def</span> selectionSort(array):
+            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(array)):
+                min_idx = i
+                <span class="keyword">for</span> j <span class="keyword">in</span> range(i+1, len(array)):
+                    <span class="keyword">if</span> array[j] < array[min_idx]:
+                        min_idx = j
+                array[i], array[min_idx] = array[min_idx], array[i]
+        
+        data = [-2, 45, 0, 11, -9]
+        selectionSort(data)
+        <span class="keyword">print</span>(<span class="string">'Sorted Array in Ascending Order:'</span>)
+        <span class="keyword">print</span>(data)
+    </pre>
+    
+    <pre id="java" class="code-block">
+        <span class="comment">// Selection sort in Java</span>
+        <span class="keyword">class</span> SelectionSort {
+            <span class="keyword">void</span> selectionSort(<span class="keyword">int</span> arr[]) {
+                <span class="keyword">int</span> n = arr.length;
+                <span class="keyword">for</span> (int i = 0; i < n-1; i++) {
+                    int min_idx = i;
+                    <span class="keyword">for</span> (int j = i+1; j < n; j++) {
+                        <span class="keyword">if</span> (arr[j] < arr[min_idx]) {
+                            min_idx = j;
+                        }
+                    }
+                    <span class="keyword">int</span> temp = arr[min_idx];
+                    arr[min_idx] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+    </pre>
+    
+    <pre id="c" class="code-block">
+        <span class="comment">// Selection sort in C</span>
+        <span class="keyword">void</span> selectionSort(<span class="keyword">int</span> array[], <span class="keyword">int</span> size) {
+            <span class="keyword">for</span> (int i = 0; i < size-1; i++) {
+                int min_idx = i;
+                <span class="keyword">for</span> (int j = i+1; j < size; j++) {
+                    <span class="keyword">if</span> (array[j] < array[min_idx]) {
+                        min_idx = j;
+                    }
+                }
+                <span class="keyword">int</span> temp = array[min_idx];
+                array[min_idx] = array[i];
+                array[i] = temp;
+            }
+        }
+    </pre>
+    
+    <pre id="cpp" class="code-block">
+        <span class="comment">// Selection sort in C++</span>
+        <span class="keyword">void</span> selectionSort(vector<int>& arr) {
+            <span class="keyword">int</span> n = arr.size();
+            <span class="keyword">for</span> (int i = 0; i < n-1; i++) {
+                int min_idx = i;
+                <span class="keyword">for</span> (int j = i+1; j < n; j++) {
+                    <span class="keyword">if</span> (arr[j] < arr[min_idx]) {
+                        min_idx = j;
+                    }
+                }
+                swap(arr[min_idx], arr[i]);
+            }
+        }
+    </pre>
+</div>
+
+<!-- test end -->
+
+         <br>
+         <hr>
+         <br>
+         <h2>Selection Sort Complexity</h2><br>
+         <table id="table">
+            <tr>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Best</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Space Complexity</td>
+                <td id="second">O(1)</td>
+            </tr>
+            <tr>
+                <td>Stability</td>
+                <td id="second">No</td>
+            </tr>
+        </table>
+        <br><br>
+         <table id="table">
+            <tr>
+                <th>Cycle</th>
+            </tr>
+            <tr>
+                <td>1st</td>
+                <td id="second">O(n-1)</td>
+            </tr>
+            <tr>
+                <td>2nd</td>
+                <td id="second">O(n-2)</td>
+            </tr>
+            <tr>
+                <td>3rd</td>
+                <td id="second">O(n-3)</td>
+            </tr>
+            <tr>
+                <td>....</td>
+                <td id="second">....</td>
+            </tr>
+            <tr>
+                <td>Last</td>
+                <td id="second">1</td>
+            </tr>
+        </table>
+        <hr>
+        <br>
+
+        <p>Number of comparisons:  (n - 1) + (n - 2) + (n - 3) + ..... + 1 = n(n - 1) / 2 nearly equals to n2.</p><br>
+
+        <h3>complexity</h3>=O(n2)<br><br>
+        <p>Also, we can analyze the complexity by simply observing the number of loops.
+         There are 2 loops so the complexity is n*n = n2.</p><br>
+
+         <h3>Time Complexities:</h3><br>
+         <ul>
+            <b><li>Worst Case Complexity: O(n2)</li></b><br>
+
+            <p>If we want to sort in ascending order and the array is in descending order then, the worst case occurs.</p><br>
+
+            <b><li>Best Case Complexity: O(n2)</li></b><br>
+
+            <p>It occurs when the array is already sorted</p><br>
+
+            <b><li>Average Case Complexity: O(n2)</li></b><br>
+
+            <p>It occurs when the elements of the array are in jumbled order (neither ascending nor descending).</p>
+
+         </ul><br>
+
+
+         <p>The time complexity of the selection sort is the same in all cases. At every step,
+         you have to find the minimum element and put it in the right place. The minimum element 
+         is not known until the end of the array is not reached. </p><br>
+
+         <h3>Space Complexity:</h3><br>
+         <p>Space complexity is O(1) because an extra variable min_idx is used.</p><br>
+         <hr><br>
+         <h1>Selection Sort Applications</h1>
+         <ul>
+            <li>a small list is to be sorted </li><br>
+            <li>cost of swapping does not matter</li><br>
+            <li>checking of all the elements is compulsory</li><br>
+            <li>cost of writing to a memory matters like in flash memory (number of writes/swaps is O(n) as compared to O(n2) of bubble sort </li><br>
+
+         </ul>
+         <br>
+         <hr><br>
+        <!-- insertion sort visualizer -->
+        <div class="container">
+            <h1>Selection Sort Visualizer</h1>
+            
+            <!-- Box for displaying bars -->
+            <div id="barsBox">
+                <div id="barsContainer"></div>
+            </div>
+        
+            <!-- Buttons and input at the bottom -->
+            <div class="controls">
+                <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+                <button id="createBarsButton">Create Bars</button>
+        
+                <div class="last">
+                    <label for="order">Sort Order: </label>
+                    <select id="order">
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                    </select>
+                    <label for="speed">Speed:</label>
+                    <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+                    <button id="sortButton">Sort</button>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main2">
+            <a href="insertionsort.html"><button id="previous">Previous</button></a>
+            <a href="quicksort.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="selectionsort.js"></script>
+</body>
+</html>

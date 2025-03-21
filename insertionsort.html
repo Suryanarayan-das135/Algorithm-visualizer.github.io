@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion sort</title>
+    <link rel="stylesheet" href="insertionsort.css">
+</head>
+<body>
+    <div class="main2">
+        <a href="bubblesort2.html"><button id="previous">Previous</button></a>
+        <a href="selectionsort.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Insertion Sort Algorithm</h1><br><br>
+            <ul>
+                <li>Insertion sort is a sorting algorithm that places an unsorted element at its suitable place in each iteration.</li><br>
+                <li>Insertion sort works similarly as we sort cards in our hand in a card game.</li><br>
+                <li>We assume that the first card is already sorted then, we select an unsorted card. If the unsorted card is greater than the card in hand, it is placed on the right otherwise, to the left. In the same way, other unsorted cards are taken and put in their right place.</li><br>
+                <li>A similar approach is used by insertion sort.</li>
+                <br>
+            </ul>
+            <br>
+            <hr>
+        </div>
+        <div class="main2">
+            <ol>
+                <h2>Working of Insertion Sort</h2><br>
+                <ul type="circle" id="textbox1">
+                    <li>Suppose we need to sort the following array.</li>
+                </ul>
+                <div class="img">
+                    <img src="images/insertion sort/Insertion Sort 1.png" >
+                    <div class="text">Initial array</div>
+                </div>
+                <ol>
+                    <li>The first element in the array is assumed to be sorted. Take the second element and store it separately in key.</li>
+                </ol>
+                <br>
+                <p>Compare key with the first element. If the first element is greater than key, then key is placed in front of the first element.</p>
+                <br>
+                <div class="img">
+                    <img src="images/insertion sort/Insertion Sort 2.png" >
+                    <div class="text">If the first element is greater than key, then key is placed in front of the first element.
+                    </div>
+                </div>
+                <li>Now, the first two elements are sorted.</li><br>
+                <p>Take the third element and compare it with the elements on the left of it. Placed it just behind the element smaller than it. If there is no element smaller than it, then place it at the beginning of the array.
+                </p>
+                <div class="img">
+                    <img src="images/insertion sort/Insertion Sort 3.png" >
+                    <div class="text">Place 1 at the beginning</div>
+                </div>
+                <li>Similarly, place every unsorted element at its correct position.</li>
+                <div class="img">
+                    <img src="images/insertion sort/Insertion Sort 4.png" >
+                    <div class="text">Place 4 behind 1</div>
+                </div>
+                <div class="img">
+                    <img src="images/insertion sort/Insertion Sort 5.png" >
+                    <div class="text">Place 3 behind 1 and the array is sorted</div>
+                </div>
+                <hr>
+            </ol>
+            <br>
+            <h2>Insertion Sort Algorithm</h2><br>
+            <div id="box" style="background-color: #2d2d2d;">
+                <pre>
+                    
+                <span class="keyword">insertionSort(array)</span>
+                    <span class="keyword">mark</span> <span class="comment">mark first element as sorted</span>
+                        <span class="keyword">for</span> <span class="comment">each unsorted element X</span>
+                            <span class="keyword">'extract'</span><span class="comment">the element X</span>
+                                <span class="keyword">for</span><span class="comment">j <- lastSortedIndex down to 0</span>
+                                    <span class="keyword">if</span> <span class="comment">current element j > X</span>
+                                    <span class="keyword">move</span><span class="comment">sorted element to the right by 1</span>
+                                <span class="keyword">break</span> <span class="comment">loop and insert X here</span>
+                        <span class="keyword">end</span> <span class="comment">insertionSort</span>
+                </pre>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <h2>Insertion Sort Code in Python, Java and C/C++</h2>
+            <!-- test -->
+            <br>
+            <div class="navbar">
+                <button class="tab active" onclick="showCode('python')">Python</button>
+                <button class="tab" onclick="showCode('java')">Java</button>
+                <button class="tab" onclick="showCode('c')">C</button>
+                <button class="tab" onclick="showCode('cpp')">C++</button>
+            </div>
+            
+            <div class="code-container">
+                <pre id="python" class="code-block active">
+                    <span class="comment"># Insertion sort in Python</span>
+                    <span class="keyword">def</span> insertionSort(array):
+                        <span class="keyword">for</span> i <span class="keyword">in</span> range(1, len(array)):
+                            key = array[i]
+                            j = i - 1
+                            <span class="keyword">while</span> j >= 0 <span class="keyword">and</span> key < array[j]:
+                                array[j + 1] = array[j]
+                                j -= 1
+                            array[j + 1] = key
+                    
+                    data = [-2, 45, 0, 11, -9]
+                    insertionSort(data)
+                    <span class="keyword">print</span>(<span class="string">'Sorted Array in Ascending Order:'</span>)
+                    <span class="keyword">print</span>(data)
+                </pre>
+                
+                <pre id="java" class="code-block">
+                    <span class="comment">// Insertion sort in Java</span>
+                    <span class="keyword">class</span> InsertionSort {
+                        <span class="keyword">void</span> insertionSort(<span class="keyword">int</span> arr[]) {
+                            <span class="keyword">int</span> n = arr.length;
+                            <span class="keyword">for</span> (int i = 1; i < n; i++) {
+                                int key = arr[i];
+                                int j = i - 1;
+                                <span class="keyword">while</span> (j >= 0 && arr[j] > key) {
+                                    arr[j + 1] = arr[j];
+                                    j = j - 1;
+                                }
+                                arr[j + 1] = key;
+                            }
+                        }
+                    }
+                </pre>
+                
+                <pre id="c" class="code-block">
+                    <span class="comment">// Insertion sort in C</span>
+                    <span class="keyword">void</span> insertionSort(<span class="keyword">int</span> array[], <span class="keyword">int</span> size) {
+                        <span class="keyword">for</span> (int i = 1; i < size; i++) {
+                            int key = array[i];
+                            int j = i - 1;
+                            <span class="keyword">while</span> (j >= 0 && array[j] > key) {
+                                array[j + 1] = array[j];
+                                j--;
+                            }
+                            array[j + 1] = key;
+                        }
+                    }
+                </pre>
+                
+                <pre id="cpp" class="code-block">
+            <span class="comment">// Insertion sort in C++</span>
+            <span class="keyword">void</span> insertionSort(vector<int>& arr) {
+                        <span class="keyword">int</span> n = arr.size();
+                        <span class="keyword">for</span> (int i = 1; i < n; i++) {
+                            int key = arr[i];
+                            int j = i - 1;
+                            <span class="keyword">while</span> (j >= 0 && arr[j] > key) {
+                                arr[j + 1] = arr[j];
+                                j--;
+                            }
+                            arr[j + 1] = key;
+                        }
+                    }
+                </pre>
+            </div>
+            
+         <!-- test end -->
+         <br>
+         <hr>
+         <br>
+         <h2>Insertion Sort Complexity</h2><br>
+         <table id="table">
+            <tr>
+                <th>Time Complexity</th>
+            </tr>
+            <tr>
+                <td>Best</td>
+                <td id="second">O(n)</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td id="second">O(n<sup>2</sup>)</td>
+            </tr>
+            <tr>
+                <td>Space Complexity</td>
+                <td id="second">O(1)</td>
+            </tr>
+            <tr>
+                <td>Stability</td>
+                <td id="second">Yes</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <h2>Time Complexities</h2><br>
+        <ul>
+            <li><h4>Worst Case Complexity: O(n2)</h4><br>
+                <p>Suppose, an array is in ascending order, and you want to sort it in descending order. In this case, worst case complexity occurs.</p><br>
+                <p>Each element has to be compared with each of the other elements so, for every nth element, (n-1) number of comparisons are made.</p><br>
+                <p>Thus, the total number of comparisons = n*(n-1) ~ n2</p><br>
+            </li>
+        </ul>
+        <ul>
+            <li><h4>Best Case Complexity: O(n)</h4></li><br>
+            <p>When the array is already sorted, the outer loop runs for n number of times whereas the inner loop does not run at all. So, there are only n number of comparisons. Thus, complexity is linear.</p><br>
+        </ul>
+        <ul>
+            <li><h4>Average Case Complexity: O(n2)</h4></li><br>
+            <p>It occurs when the elements of an array are in jumbled order (neither ascending nor descending).</p><br>
+        </ul>
+        <h2>Space Complexities</h2><br>
+        <ul>
+            <li>Space complexity is O(1) because an extra variable key is used.</li><br>
+        </ul>
+        <!-- insertion sort visualizer -->
+        <div class="container">
+            <h1>Insertion Sort Visualizer</h1>
+            
+            <!-- Box for displaying bars -->
+            <div id="barsBox">
+                <div id="barsContainer"></div>
+            </div>
+    
+            <!-- Buttons and input at the bottom -->
+            <div class="controls">
+                <input type="text" id="inputBox" placeholder="Enter values (comma separated)">
+                <button id="createBarsButton">Create Bars</button>
+    
+                <div class="last">
+                    <label for="order">Sort Order: </label>
+                    <select id="order">
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                    </select>
+                    <label for="speed">Speed:</label>
+                    <input type="range" id="speed" min="100" max="2000" step="100" value="300">
+                    <button id="sortButton">Sort</button>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main2">
+            <a href="bubblesort2.html"><button id="previous">Previous</button></a>
+            <a href="selectionsort.html"><button id="next">Next</button></a>
+        </div>
+        </div>
+    </div>
+    <script src="insertionsort.js"></script>
+</body>
+</html>

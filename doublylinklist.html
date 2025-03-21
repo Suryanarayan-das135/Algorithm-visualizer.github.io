@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doubly link list</title>
+    <link rel="stylesheet" href="doubly_link_list.css">
+</head>
+<body><!--body start-->
+    <div class="main2">
+        <a href="single_link0.html"><button id="previous">Previous</button></a>
+        <a href="CircularLinkList.html"><button id="next">Next</button></a>
+    </div>
+    <div class="main">
+        <div class="main1">
+            <h1 style="text-decoration: double underline; ">Doubly Linked List </h1><br><br>
+            <p>We add a pointer to the previous node in a doubly-linked list. Thus, we can go in either direction: forward or backward.</p>
+            <div class="img">
+                <img src="images/link list/doubly-linked-list-1.webp" >
+                <div class="text">Doubly Linked List
+                </div>
+                <br>
+            </div>
+            <div>
+                <p>A node is represented as</p><br>
+                <div id="box" style="background-color: #2d2d2d;">
+                    <pre>    
+                    <span class="keyword">struct </span><span class="string">node</span>
+                        <span class="string">{</span>
+                            <span class="keyword">int </span><span class="string">data;</span>
+                            <span class="keyword">struct </span><span class="string">node </span><span class="string">*next;</span>
+                            <span class="keyword">struct </span><span class="string">node </span><span class="string">*prev;</span>
+                        <span class="string">};</span>    
+                    </pre>
+                </div><br>
+                <p>A three-member doubly linked list can be created as</p><br>
+
+                <div id="box" style="background-color: #2d2d2d;">
+                    <pre>
+        
+                    <span class="string">/* Initialize nodes */</span>    
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*head;</span>
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*one = NULL;</span>  
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*two = NULL;</span>
+                    <span class="keyword">struct </span><span class="string">node </span><span class="string">*three = NULL;</span> 
+        
+                    <span class="string">/* Allocate memory */
+                    </span> 
+                    <span class="string">one = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+                    <span class="string">two = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+                    <span class="string">three = malloc(sizeof(<span class="keyword">struct</span> <span class="comment">node</span> ));
+                    </span>
+                    <span class="string">/* Assign data values */</span>
+                    <span>one->data = 1;</span>
+                    <span>two->data = 2;</span>
+                    <span>three->data = 3;</span>
+        
+                    <span class="string">/* Connect nodes */</span>
+                    <span>one->next = two;</span>
+                    <span>one->prev = NULL;</span>
+
+                    <span>two->next = three;</span>
+                    <span>two->prev = one;</span>
+
+                    <span>three->next = NULL;</span>
+                    <span>three->prev = two;</span>
+        
+                    <span class="comment">/* Save address of first node in head */</span>
+                    <span>head = one;
+                    </span>
+                    </pre>
+                </div><br><br><hr><br><br>
+                    
+                <!-- doubly link list visualizer -->
+
+                <div class="container">
+                    <h1>Doubly Linked List Visualization</h1>
+                    <div class="controls">
+                        <div class="row">
+                            <input type="number" id="valueInput" placeholder="Enter value">
+                        </div>
+                        <div class="row">
+                            <button onclick="insertAtBeginning()">Insert Beginning</button>
+                            <button onclick="insertAtEnd()">Insert End</button>
+                        </div>
+                        <div class="row">
+                            <input type="number" id="positionInput" placeholder="Position">
+                        </div>
+                        <div class="row">
+                            <button onclick="insertAtPosition()">Insert At Position</button>
+                            <button onclick="deleteFromPosition()">Delete At Position</button>
+                        </div>
+                        <div class="row">
+                            <button onclick="deleteFromBeginning()">Delete Beginning</button>
+                            <button onclick="deleteFromEnd()">Delete End</button>
+                        </div>
+                    </div>
+                    <div id="linkedListContainer" class="linked-list-container"></div>
+                </div>
+            </div>
+            <div class="main2">
+                <a href="single_link0.html"><button id="previous">Previous</button></a>
+                <a href="CircularLinkList.html"><button id="next">Next</button></a>
+            </div>
+               </div> 
+            </div>
+            
+         <br><br>
+        </div>
+        
+    </div>
+    <script src="doubly_link_list.js"></script>
+</body>
+</html>

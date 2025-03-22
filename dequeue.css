@@ -92,7 +92,9 @@ td,th{
 }
 /* Responsive Design */
 @media (max-width: 768px) {
-    
+     body{
+        background-color: #f0f4f8;
+    }
     .main {
         margin: 0; /* Removes margin for full-width view on mobile */
         width: 100%;
